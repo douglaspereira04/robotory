@@ -2,7 +2,7 @@ package robotory;
 
 import control.board.BoardController;
 import view.board.BoardPanel;
-import view.robotory.RobotoryView;
+import view.robotory.RobotoryFrame;
 
 /**
  * Main class 
@@ -17,7 +17,7 @@ public class Robotory {
 		BoardPanel boardPanel = new BoardPanel();
 		BoardController boardController = new BoardController(boardPanel);
 		
-		RobotoryView appView = new RobotoryView(boardPanel);
+		RobotoryFrame appView = new RobotoryFrame(boardPanel);
 		
 	}
 

@@ -15,7 +15,7 @@ import view.board.BoardPanel;
  * @author douglas
  *
  */
-public class RobotoryView extends JFrame {
+public class RobotoryFrame extends JFrame {
 
 	/**
 	 * 
@@ -29,7 +29,7 @@ public class RobotoryView extends JFrame {
 	protected JMenuItem disconnectMenuItem = null;
 	protected JMenuItem startMenuItem = null;
 
-	public RobotoryView(BoardPanel boardPanel) {
+	public RobotoryFrame(BoardPanel boardPanel) {
 		this.boardPanel = boardPanel;
 		initialize();
 	}
