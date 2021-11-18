@@ -22,37 +22,38 @@ public class AppView extends JFrame {
 	 */
 	private static final long serialVersionUID = 1596507511992392643L;
 
-	protected BoardPanel boardPanel= null;
+	protected BoardPanel boardPanel = null;
 	protected JMenuBar menuBar = null;
 	protected JMenu gameMenu = null;
 	protected JMenuItem connectMenuItem = null;
 	protected JMenuItem disconnectMenuItem = null;
 	protected JMenuItem startMenuItem = null;
-	
+
 	public AppView(BoardPanel boardPanel) {
 		this.boardPanel = boardPanel;
 		initialize();
 	}
 
 	public void initialize() {
-		this.setLocationRelativeTo(null);
 		this.setPreferredSize(new Dimension(BoardPanel.DIMENSION.width, BoardPanel.DIMENSION.height));
 		this.setMaximumSize(new Dimension(BoardPanel.DIMENSION.width, BoardPanel.DIMENSION.height));
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
 		this.setVisible(true);
-		
 		initializeMenuBar();
-		
+
 		initializeBoardPanel();
-		
+
 		int diff = this.getInsets().top + this.getInsets().bottom + menuBar.getHeight();
 
 		Dimension newSize = new Dimension(BoardPanel.DIMENSION.width, BoardPanel.DIMENSION.height + diff);
 		this.setPreferredSize(newSize);
 		this.setMaximumSize(newSize);
 		this.setSize(newSize);
+		this.setLocationRelativeTo(null);
+		this.setVisible(true);
 	}
-	
+
 	/**
 	 * Initializes menu bar and its menus
 	 */
@@ -62,15 +63,14 @@ public class AppView extends JFrame {
 		connectMenuItem = new JMenuItem("Conectar");
 		disconnectMenuItem = new JMenuItem("Desconectar");
 		startMenuItem = new JMenuItem("Iniciar partida");
-		
+
 		menuBar.add(gameMenu);
 		gameMenu.add(connectMenuItem);
 		gameMenu.add(disconnectMenuItem);
 		gameMenu.add(startMenuItem);
-		
-		
+
 		this.setJMenuBar(menuBar);
-		
+
 	}
 
 	/**
@@ -120,7 +120,5 @@ public class AppView extends JFrame {
 	public void setStartMenuItem(JMenuItem startMenuItem) {
 		this.startMenuItem = startMenuItem;
 	}
-	
-	
 
 }
