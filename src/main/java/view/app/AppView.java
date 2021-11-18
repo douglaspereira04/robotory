@@ -81,4 +81,46 @@ public class AppView extends JFrame {
 		this.setContentPane(boardPanel);
 	}
 
+	public BoardPanel getBoardPanel() {
+		return boardPanel;
+	}
+
+	public void setBoardPanel(BoardPanel boardPanel) {
+		this.boardPanel = boardPanel;
+	}
+
+	public JMenu getGameMenu() {
+		return gameMenu;
+	}
+
+	public void setGameMenu(JMenu gameMenu) {
+		this.gameMenu = gameMenu;
+	}
+
+	public JMenuItem getConnectMenuItem() {
+		return connectMenuItem;
+	}
+
+	public void setConnectMenuItem(JMenuItem connectMenuItem) {
+		this.connectMenuItem = connectMenuItem;
+	}
+
+	public JMenuItem getDisconnectMenuItem() {
+		return disconnectMenuItem;
+	}
+
+	public void setDisconnectMenuItem(JMenuItem disconnectMenuItem) {
+		this.disconnectMenuItem = disconnectMenuItem;
+	}
+
+	public JMenuItem getStartMenuItem() {
+		return startMenuItem;
+	}
+
+	public void setStartMenuItem(JMenuItem startMenuItem) {
+		this.startMenuItem = startMenuItem;
+	}
+	
+	
+
 }
