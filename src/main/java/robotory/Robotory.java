@@ -1,15 +1,15 @@
-package app;
+package robotory;
 
 import control.board.BoardController;
-import view.app.AppView;
 import view.board.BoardPanel;
+import view.robotory.RobotoryView;
 
 /**
  * Main class 
  * @author douglas
  *
  */
-public class App {
+public class Robotory {
 
 	public static void main(String[] args) {
 		
@@ -17,7 +17,7 @@ public class App {
 		BoardPanel boardPanel = new BoardPanel();
 		BoardController boardController = new BoardController(boardPanel);
 		
-		AppView appView = new AppView(boardPanel);
+		RobotoryView appView = new RobotoryView(boardPanel);
 		
 	}
 

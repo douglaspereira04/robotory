@@ -1,4 +1,4 @@
-package view.app;
+package view.robotory;
 
 import java.awt.Dimension;
 
@@ -15,7 +15,7 @@ import view.board.BoardPanel;
  * @author douglas
  *
  */
-public class AppView extends JFrame {
+public class RobotoryView extends JFrame {
 
 	/**
 	 * 
@@ -29,7 +29,7 @@ public class AppView extends JFrame {
 	protected JMenuItem disconnectMenuItem = null;
 	protected JMenuItem startMenuItem = null;
 
-	public AppView(BoardPanel boardPanel) {
+	public RobotoryView(BoardPanel boardPanel) {
 		this.boardPanel = boardPanel;
 		initialize();
 	}
