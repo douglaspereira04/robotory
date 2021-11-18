@@ -38,7 +38,7 @@ public class AppView extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.setPreferredSize(new Dimension(BoardPanel.DIMENSION.width, BoardPanel.DIMENSION.height));
 		this.setMaximumSize(new Dimension(BoardPanel.DIMENSION.width, BoardPanel.DIMENSION.height));
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setVisible(true);
 		
 		initializeMenuBar();
