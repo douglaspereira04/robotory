@@ -35,10 +35,13 @@ public class AppView extends JFrame {
 	}
 
 	public void initialize() {
+		this.setTitle("Robotory");
+		
 		this.setPreferredSize(new Dimension(BoardPanel.DIMENSION.width, BoardPanel.DIMENSION.height));
 		this.setMaximumSize(new Dimension(BoardPanel.DIMENSION.width, BoardPanel.DIMENSION.height));
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
+		
 		this.setVisible(true);
 		initializeMenuBar();
 
