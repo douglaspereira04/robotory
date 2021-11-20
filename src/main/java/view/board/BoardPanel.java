@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import view.board.util.BoardEvent;
@@ -38,39 +39,6 @@ public class BoardPanel extends JPanel {
 	protected List<BoardHexagon> p2Supply = null;
 	protected BoardHexagon blackSupply = null;
 	protected BoardHexagon whiteSupply = null;
-
-	public static void main(String[] args) {
-		JFrame frame = new JFrame();
-		frame.setLocationRelativeTo(null);
-		frame.setPreferredSize(new Dimension(780, 530));
-		frame.setMaximumSize(new Dimension(780, 530));
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		int diff = frame.getInsets().top + frame.getInsets().bottom;
-
-		Dimension a = new Dimension(DIMENSION.width, DIMENSION.height + diff);
-		frame.setPreferredSize(a);
-		frame.setMaximumSize(a);
-		frame.setSize(a);
-		BoardPanel board = new BoardPanel();
-
-		frame.setContentPane(board);
-
-		board.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				BoardHexagon hexagon = null;
-				if (arg0.getSource().getClass() == BoardHexagon.class) {
-					hexagon = (BoardHexagon) arg0.getSource();
-					System.out.println(hexagon.getType());
-					System.out.println(hexagon.getPosition());
-				}
-				super.mouseClicked(arg0);
-			}
-		});
-
-	}
 	
 	/**
 	 * Constructor
@@ -205,12 +173,17 @@ public class BoardPanel extends JPanel {
 		BoardHexagon h = null;
 
 		h = new BoardHexagon(BoardHexagon.Type.COMMON_BLACK);
+		h.setText("10");
+		h.setHorizontalTextPosition(JLabel.CENTER);
+		h.setForeground(Color.WHITE);
 		blackSupply = h;
 		addBoardEvent(h);
 		h.setBounds(xoffset, yoffset, hexagonsize, hexagonsize);
 		this.add(h);
 
 		h = new BoardHexagon(BoardHexagon.Type.COMMON_WHITE);
+		h.setText("10");
+		h.setHorizontalTextPosition(JLabel.CENTER);
 		whiteSupply = h;
 		addBoardEvent(h);
 		h.setBounds(xoffset + hexagonsize, yoffset, hexagonsize, hexagonsize);
