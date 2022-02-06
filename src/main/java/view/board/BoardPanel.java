@@ -89,7 +89,7 @@ public class BoardPanel extends JPanel {
 			xoffset += leftoffset;
 		}
 
-		x = 3;
+		x = 4;
 		yoffset += (jumpoffset * 2);
 		for (int i = 5; i > 3; i--) {
 			for (int y = 0; y < i; y++) {
@@ -123,43 +123,41 @@ public class BoardPanel extends JPanel {
 
 		BoardHexagon h = null;
 
-		h = new BoardHexagon(BoardHexagon.Type.P1_SUPPLY, 0);
-		h.setText("2");
-		h.setHorizontalTextPosition(JLabel.CENTER);
+		for (int y = 0; y < 3; y++) {
+			h = new BoardHexagon(BoardHexagon.Type.P1_SUPPLY, y);
+			p1Supply.add(h);
+			addBoardEvent(h);
+			h.setBounds(xoffset, yoffset + (hexagonsize * y) + (topoffset * y), hexagonsize, hexagonsize);
+			this.add(h);
+		}
+
+		yoffset -= jumpoffset;
+		xoffset += leftoffset;
+		h = new BoardHexagon(BoardHexagon.Type.P1_SUPPLY, 3);
 		p1Supply.add(h);
 		addBoardEvent(h);
-		h.setBounds(xoffset, yoffset + (hexagonsize * 0) + (topoffset * 0), hexagonsize, hexagonsize);
-		this.add(h);
-		
-		h = new BoardHexagon(BoardHexagon.Type.P1_SUPPLY, 1);
-		h.setText("2");
-		h.setHorizontalTextPosition(JLabel.CENTER);
-		p1Supply.add(h);
-		addBoardEvent(h);
-		h.setBounds(xoffset, yoffset + (hexagonsize * 1) + (topoffset * 1), hexagonsize, hexagonsize);
+		h.setBounds(xoffset, yoffset + (hexagonsize * 2) + (topoffset * 2), hexagonsize, hexagonsize);
 		this.add(h);
 
 		yoffset = 58;
 		xoffset = 617;
 
+		h = new BoardHexagon(BoardHexagon.Type.P2_SUPPLY, 0);
+		p2Supply.add(h);
+		addBoardEvent(h);
+		h.setBounds(xoffset, yoffset, hexagonsize, hexagonsize);
+		this.add(h);
+
 		yoffset -= jumpoffset;
 		xoffset += leftoffset;
 
-		h = new BoardHexagon(BoardHexagon.Type.P2_SUPPLY, 0);
-		h.setText("2");
-		h.setHorizontalTextPosition(JLabel.CENTER);
-		p2Supply.add(h);
-		addBoardEvent(h);
-		h.setBounds(xoffset, yoffset + (hexagonsize * 0) + (topoffset * 0), hexagonsize, hexagonsize);
-		this.add(h);
-		
-		h = new BoardHexagon(BoardHexagon.Type.P2_SUPPLY, 1);
-		h.setText("2");
-		h.setHorizontalTextPosition(JLabel.CENTER);
-		p2Supply.add(h);
-		addBoardEvent(h);
-		h.setBounds(xoffset, yoffset + (hexagonsize * 1) + (topoffset * 1), hexagonsize, hexagonsize);
-		this.add(h);
+		for (int y = 0; y < 3; y++) {
+			h = new BoardHexagon(BoardHexagon.Type.P2_SUPPLY, y + 1);
+			p2Supply.add(h);
+			addBoardEvent(h);
+			h.setBounds(xoffset, yoffset + (hexagonsize * y) + (topoffset * y), hexagonsize, hexagonsize);
+			this.add(h);
+		}
 
 	}
 

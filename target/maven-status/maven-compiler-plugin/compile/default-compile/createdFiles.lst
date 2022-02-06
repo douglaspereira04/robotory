@@ -1,5 +1,6 @@
 view/board/BoardPanel.class
 view/board/BoardHexagon$1.class
+rede/AtorNetgames.class
 view/board/BoardHexagon$Type.class
 control/board/BoardController$1.class
 view/board/BoardHexagon$2.class

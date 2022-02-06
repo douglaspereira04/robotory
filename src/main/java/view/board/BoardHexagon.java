@@ -13,7 +13,6 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-import model.piece.Piece;
 import view.resources.Images;
 
 /**
@@ -61,6 +60,53 @@ public class BoardHexagon extends JLabel {
 	}
 
 	/**
+	 * Identifies piece occupying {@link BoardHexagon}.<br>
+	 * Possible values are:
+	 * <ul>
+	 * <li>{@link #RED_ROBOT};
+	 * <li>{@link #BLACK_ROBOT};
+	 * <li>{@link #WHITE_ROBOT};
+	 * <li>{@link #BLACK_ENERGY};
+	 * <li>{@link #WHITE_ENERGY};
+	 * <li>{@link #EMPTY};
+	 * <ul>
+	 * 
+	 * @author douglas
+	 */
+	public enum Piece {
+		/**
+		 * A red robot.
+		 */
+		RED_ROBOT,
+		/**
+		 * A black robot.
+		 */
+		BLACK_ROBOT,
+		/**
+		 * A white robot.
+		 */
+		WHITE_ROBOT,
+		/**
+		 * A black energy.
+		 */
+		BLACK_ENERGY,
+		/**
+		 * A white energy.
+		 */
+		WHITE_ENERGY,
+		/**
+		 * No piece.<br>
+		 * The {@link Hexagon} is empty.
+		 */
+		EMPTY;
+
+		Object getEnumConstants() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+	}
+
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -8809176813937027938L;
@@ -72,7 +118,7 @@ public class BoardHexagon extends JLabel {
 
 	protected Point position = null;
 	protected Type type = null;
-	protected Piece piece = new Piece();
+	protected Piece piece = Piece.EMPTY;
 
 	public BoardHexagon(Type type) {
 		this();
@@ -123,7 +169,7 @@ public class BoardHexagon extends JLabel {
 	 */
 	protected void onMouseOver() {
 		Icon icon = null;
-		if (this.piece.getType() != Piece.Type.EMPTY) {
+		if (this.piece != Piece.EMPTY) {
 			
 			BufferedImage combinedImage = new BufferedImage( 
 					DIMENSION.width, 
@@ -159,7 +205,7 @@ public class BoardHexagon extends JLabel {
 	 */
 	public void displayPiece() {
 		Icon icon = null;
-		if (this.piece.getType() != Piece.Type.EMPTY) {
+		if (this.piece != Piece.EMPTY) {
 			icon = new ImageIcon(getImage(this.piece));
 		} else {
 			icon = new ImageIcon();
@@ -178,7 +224,7 @@ public class BoardHexagon extends JLabel {
 	 */
 	private Image getImage(Piece piece) {
 
-		switch (piece.getType()) {
+		switch (piece) {
 		case RED_ROBOT:
 			return Images.RED_ROBOT;
 		case BLACK_ROBOT:
@@ -239,10 +285,6 @@ public class BoardHexagon extends JLabel {
 	 */
 	public void setPiece(Piece piece) {
 		this.piece = piece;
-	}
-	
-	public void setPiece(Piece.Type type) {
-		this.piece = new Piece(type);
 	}
 
 }

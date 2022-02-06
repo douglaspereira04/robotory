@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="INE5417.Robotory.AppTest" time="0.015" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="INE5417.Robotory.AppTest" time="0.02" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="sun.desktop" value="gnome"/>
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
     <property name="java.specification.version" value="11"/>
     <property name="sun.cpu.isalist" value=""/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
-    <property name="java.class.path" value="/home/egami/Documents/ufsc/engenharia/trabalho2/robotory/target/test-classes:/home/egami/Documents/ufsc/engenharia/trabalho2/robotory/target/classes:/home/egami/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/egami/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
+    <property name="java.class.path" value="/home/egami/Documents/ufsc/engenharia/trabalho2/robotory/target/test-classes:/home/egami/Documents/ufsc/engenharia/trabalho2/robotory/target/classes:/home/egami/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/egami/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/egami/Documents/ufsc/engenharia/trabalho2/robotory/netgames/ngnrtFramework.jar:"/>
     <property name="java.vm.vendor" value="Ubuntu"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.vendor.url" value="https://ubuntu.com/"/>
@@ -17,9 +17,9 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-11-openjdk-amd64/lib"/>
-    <property name="sun.java.command" value="/home/egami/Documents/ufsc/engenharia/trabalho2/robotory/target/surefire/surefirebooter8721488076345736314.jar /home/egami/Documents/ufsc/engenharia/trabalho2/robotory/target/surefire 2022-02-06T16-16-42_418-jvmRun1 surefire8377934980086517701tmp surefire_05860622456466940541tmp"/>
+    <property name="sun.java.command" value="/home/egami/Documents/ufsc/engenharia/trabalho2/robotory/target/surefire/surefirebooter17218579109710941525.jar /home/egami/Documents/ufsc/engenharia/trabalho2/robotory/target/surefire 2022-02-06T16-38-19_821-jvmRun1 surefire5313048695010900106tmp surefire_05465700687177898037tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="/home/egami/Documents/ufsc/engenharia/trabalho2/robotory/target/test-classes:/home/egami/Documents/ufsc/engenharia/trabalho2/robotory/target/classes:/home/egami/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/egami/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
+    <property name="surefire.test.class.path" value="/home/egami/Documents/ufsc/engenharia/trabalho2/robotory/target/test-classes:/home/egami/Documents/ufsc/engenharia/trabalho2/robotory/target/classes:/home/egami/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/egami/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/egami/Documents/ufsc/engenharia/trabalho2/robotory/netgames/ngnrtFramework.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="/home/egami"/>
     <property name="user.language" value="en"/>
@@ -33,7 +33,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="/home/egami/Documents/ufsc/engenharia/trabalho2/robotory/target/surefire/surefirebooter8721488076345736314.jar"/>
+    <property name="surefire.real.class.path" value="/home/egami/Documents/ufsc/engenharia/trabalho2/robotory/target/surefire/surefirebooter17218579109710941525.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="11.0.13+8-Ubuntu-0ubuntu1.20.04"/>
     <property name="user.name" value="egami"/>
