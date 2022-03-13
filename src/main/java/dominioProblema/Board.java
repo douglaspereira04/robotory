@@ -1,5 +1,7 @@
 package dominioProblema;
 
+import java.util.ArrayList;
+
 import netgames.GetEnergy;
 import netgames.Move;
 import netgames.MoveRobot;
@@ -7,7 +9,7 @@ import netgames.MoveType;
 import netgames.PlaceEnergy;
 
 public class Board {
-	protected Piece[][] board = new Piece[5][6];
+	protected Piece[][] board = new Piece[6][5];
 	protected Player localPlayer;
 	protected Player remotePlayer;
 	protected boolean matchInProgress = false;
@@ -37,6 +39,9 @@ public class Board {
 	}
 	
 	public Piece getPiece(int x, int y) {
+		if (x < 6 && y < 5) {
+			return this.board[x][y];
+		}
 		return null;
 	}
 	
@@ -57,7 +62,26 @@ public class Board {
 	}
 	
 	public void updateState() {
-		
+		if (this.matchInProgress) {
+			this.localPlayer.switchTurn();
+			this.remotePlayer.switchTurn();
+			String name;
+			if (this.localPlayer.isTurn()) {
+				name = this.localPlayer.getName();
+			} else {
+				name = this.remotePlayer.getName();
+			}
+		} else {
+			String name;
+			if (this.localPlayer.isWinner()) {
+				name = this.localPlayer.getName();
+				this.setMessage(name); // ?
+			} else {
+				this.remotePlayer.isWinner();
+				this.setMessage(""); // ?
+			}
+		}
+		this.clearMoveInProgress();
 	}
 	
 	public void clearMoveInProgress() {
@@ -89,11 +113,38 @@ public class Board {
 	}
 	
 	public boolean isMatchInProgress() {
-		return false;
+		return this.matchInProgress;
 	}
 	
-	public void checkMatchEnd() {
-		
+	public void checkMatchEnd() { // Modificar diagrama de sequencia
+		int blackSide = 0, whiteSide = 0;
+		if (this.whiteEnergy == 0 || this.blackEnergy == 0) {
+			for (int i = 0; i < 5; i++) {
+				ArrayList<Piece> currentLine = this.getBoardLine(i);
+				for (int j = 0; j < currentLine.size(); j++) {
+					Piece piece = currentLine.get(j);
+					if (piece != null) {
+						boolean holdsRobot = piece.holdsRobot();
+						if (holdsRobot) {
+							if (i < 2) {
+								blackSide++;
+							} else {
+								whiteSide++;
+							}
+						}
+					}
+				}
+			}
+			boolean localColor = this.localPlayer.getColor();
+			if (localColor) {
+				if (whiteSide > blackSide) {
+					this.localPlayer.setWinner(true);
+				} else {
+					this.remotePlayer.setWinner(true);
+				}
+			}
+			this.matchInProgress = false;
+		}
 	}
 	
 	public String selectFromPersonalSupply(boolean color, boolean owner) {
@@ -153,7 +204,7 @@ public class Board {
 		}
 	}
 	
-	public void applyEnergyplacement(PlaceEnergy move) {
+	public void applyEnergyPlacement(PlaceEnergy move) {
 		
 	}
 	
@@ -233,7 +284,21 @@ public class Board {
 		return message;
 	}
 	
-	public int[] getBoardLine(int index) {
-		return null;
+	public ArrayList<Piece> getBoardLine(int index) {
+		int size = 0;
+		if (index == 0 || index == 5) {
+			size = 3;
+		} else if (index == 1 || index == 4) {
+			size = 4;
+		} else if (index == 2 || index == 3) {
+			size = 5;
+		} else {
+			return null;
+		}
+		ArrayList<Piece> aux = new ArrayList<Piece>();
+		for (int i = 0; i < size; i++) {
+			aux.add(this.board[index][i]);
+		}
+		return aux;
 	}
 }
