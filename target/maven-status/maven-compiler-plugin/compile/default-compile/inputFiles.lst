@@ -1,8 +1,7 @@
-/home/egami/Documents/ufsc/engenharia/trabalho2/robotory/src/main/java/view/board/util/BoardEvent.java
-/home/egami/Documents/ufsc/engenharia/trabalho2/robotory/src/main/java/view/board/BoardPanel.java
-/home/egami/Documents/ufsc/engenharia/trabalho2/robotory/src/main/java/view/robotory/RobotoryFrame.java
-/home/egami/Documents/ufsc/engenharia/trabalho2/robotory/src/main/java/robotory/Robotory.java
-/home/egami/Documents/ufsc/engenharia/trabalho2/robotory/src/main/java/view/resources/Images.java
-/home/egami/Documents/ufsc/engenharia/trabalho2/robotory/src/main/java/view/board/BoardHexagon.java
-/home/egami/Documents/ufsc/engenharia/trabalho2/robotory/src/main/java/control/board/BoardController.java
-/home/egami/Documents/ufsc/engenharia/trabalho2/robotory/src/main/java/rede/AtorNetgames.java
+/home/douglas/git/robotory/src/main/java/view/board/BoardHexagon.java
+/home/douglas/git/robotory/src/main/java/view/board/BoardPanel.java
+/home/douglas/git/robotory/src/main/java/rede/AtorNetgames.java
+/home/douglas/git/robotory/src/main/java/robotory/Robotory.java
+/home/douglas/git/robotory/src/main/java/view/robotory/RobotoryFrame.java
+/home/douglas/git/robotory/src/main/java/control/board/BoardController.java
+/home/douglas/git/robotory/src/main/java/view/resources/Images.java

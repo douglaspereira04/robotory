@@ -5,10 +5,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-import control.board.BoardController;
+import interfaceGrafica.BoardPanel;
+import interfaceGrafica.RobotoryFrame;
 import rede.AtorNetgames;
-import view.board.BoardPanel;
-import view.robotory.RobotoryFrame;
 
 /**
  * Main class 
@@ -21,7 +20,6 @@ public class Robotory {
 		
 		
 		BoardPanel boardPanel = new BoardPanel();
-		BoardController boardController = new BoardController(boardPanel);
 		
 		RobotoryFrame robotoryFrame = new RobotoryFrame(boardPanel);
 		
