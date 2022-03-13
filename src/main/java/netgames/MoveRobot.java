@@ -13,12 +13,10 @@ public class MoveRobot extends Move {
 	}
 	
 	public int getRobotX() {
-		int index = this.x.size() - 1;
-		return this.x.get(index);
+		return this.x.get(0);
 	}
 	
 	public int getRobotY() {
-		int index = this.y.size() - 1;
-		return this.y.get(index);
+		return this.y.get(0);
 	}
 }
