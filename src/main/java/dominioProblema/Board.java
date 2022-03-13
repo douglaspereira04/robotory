@@ -77,9 +77,8 @@ public class Board {
 				name = this.remotePlayer.getName();
 			}
 		} else {
-			String name;
+			String name = this.localPlayer.getName();
 			if (this.localPlayer.isWinner()) {
-				name = this.localPlayer.getName();
 				this.setMessage(name); // ?
 			} else {
 				this.remotePlayer.isWinner();
@@ -90,7 +89,7 @@ public class Board {
 	}
 	
 	public void clearMoveInProgress() {
-		
+		this.moveInProgress = null;
 	}
 	
 	public Piece removePiece(int x, int y) {
