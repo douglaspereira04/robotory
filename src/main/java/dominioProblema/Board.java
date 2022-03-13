@@ -61,7 +61,7 @@ public class Board {
 	}
 	
 	public void clearMoveInProgress() {
-		
+		moveInProgress = null;
 	}
 	
 	public Piece removePiece(int x, int y) {

@@ -63,8 +63,52 @@ public class InterfaceJogador {
 		
 	}
 	
-	public String selectPosition(int x, int y) {
-		return null;
+	public void selectPosition(int x, int y) {
+		boolean getEnergyInProgress = board.isGetEnergyInProgress();
+		String message = null;
+		
+		if (!getEnergyInProgress) {
+			boolean isMoveInProgress = board.isMoveInProgress();
+			
+			if(isMoveInProgress) {
+				boolean robotMovementInProgress = board.isRobotMovementInProgress();
+				
+				if (robotMovementInProgress) {
+					message = board.selectEnergy(x, y);
+					
+					if (message.equals("END")) {
+						board.applyRobotMovement((MoveRobot) board.getMoveInProgress());
+					}
+					
+				}else if(!robotMovementInProgress) {
+					message = board.selectEnergy(x, y);
+					if(message.equals("END")) {
+						board.applyEnergyplacement((PlaceEnergy) board.getMoveInProgress());
+					}
+				}
+			} else if (!isMoveInProgress) {
+				message = board.selectRobot(x, y);
+			}
+
+			
+			if(message.equals("END")) {
+				Move move = board.getMoveInProgress();
+				try {
+					ngames.sendMove(move);
+				} catch (NaoJogandoException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				board.updateState();
+			}else if (!message.equals("")) {
+				interfaceRobotory.notify(message);
+				board.clearMoveInProgress();
+			}
+			
+		}else if(getEnergyInProgress) {
+			String notification = "Already getting energy";
+			interfaceRobotory.notify(notification);
+		}
 	}
 	
 	public void startMatch() {
@@ -85,7 +129,7 @@ public class InterfaceJogador {
 			message = "Not Connected";
 		}
 		
-		if(message!="") {
+		if(message.equals("")) {
 			interfaceRobotory.notify(message);
 		}
 	}

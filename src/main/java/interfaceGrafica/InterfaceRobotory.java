@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Iterator;
 
 import javax.swing.JOptionPane;
 
@@ -144,6 +145,22 @@ public class InterfaceRobotory {
 				super.mouseClicked(e);
 			}
 		});
+		
+		for (int i = 0; i < 5; i++) {
+			for (int j = 0; j < 6; j++) {
+				BoardHexagon position = frame.getBoardPanel().getHexagon(i, j);
+				
+				if (position != null) {
+					position.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseClicked(MouseEvent e) {
+							actor.selectPosition(position.getPosition().x, position.getPosition().y);
+							super.mouseClicked(e);
+						}
+					});
+				}
+			}
+		}
 		
 	}
 	
