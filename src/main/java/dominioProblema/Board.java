@@ -9,7 +9,7 @@ import netgames.MoveType;
 import netgames.PlaceEnergy;
 
 public class Board {
-	protected Piece[][] board = new Piece[6][5];
+	protected Piece[][] board = new Piece[5][6];
 	protected Player localPlayer;
 	protected Player remotePlayer;
 	protected boolean matchInProgress = false;

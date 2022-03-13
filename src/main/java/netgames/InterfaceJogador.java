@@ -83,7 +83,7 @@ public class InterfaceJogador {
 				}else if(!robotMovementInProgress) {
 					message = board.selectEnergy(x, y);
 					if(message.equals("END")) {
-						board.applyEnergyplacement((PlaceEnergy) board.getMoveInProgress());
+						board.applyEnergyPlacement((PlaceEnergy) board.getMoveInProgress());
 					}
 				}
 			} else if (!isMoveInProgress) {
