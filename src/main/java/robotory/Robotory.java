@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 
 import interfaceGrafica.BoardPanel;
 import interfaceGrafica.RobotoryFrame;
-import rede.AtorNetgames;
+import netgames.AtorNetgames;
 
 /**
  * Main class 
