@@ -9,11 +9,11 @@ public abstract class Move implements Jogada{
 		this.moveType = type;
 	}
 
-	public MoveType getMoveType() {
+	public MoveType getType() {
 		return moveType;
 	}
 
-	public void setMoveType(MoveType moveType) {
+	public void setType(MoveType moveType) {
 		this.moveType = moveType;
 	}
 	

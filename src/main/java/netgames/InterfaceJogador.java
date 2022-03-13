@@ -170,8 +170,42 @@ public class InterfaceJogador {
 		return false;
 	}
 	
-	public String pressEndMove() {
-		return null;
+	public void pressEndMove() {
+		Move moveInProgress = board.getMoveInProgress();
+		String message = "";
+		
+		if (moveInProgress != null) {
+			MoveType type = moveInProgress.getType();
+			
+			if (type == MoveType.PLACE_ENERGY) {
+				message = "Incomplete move";
+			} else if(type == MoveType.MOVE_ROBOT) {
+				
+				MoveRobot robotMovement = (MoveRobot)moveInProgress;
+				int length = robotMovement.getLength();
+				
+				if (length < 1) {
+					message = "Incomplete move";
+				} else if(!(length < 1)) {
+					board.applyRobotMovement(robotMovement);
+				}
+			} 
+		} else if(moveInProgress == null) {
+			message = "No move was made";
+		}
+		
+		if(message =="") {
+			try {
+				ngames.sendMove(moveInProgress);
+			} catch (NaoJogandoException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			board.updateState();
+			interfaceRobotory.displayState();
+		} else if(!message.equals("")) {
+			interfaceRobotory.notify(message);
+		}
 	}
 	
 	public void updateState() {

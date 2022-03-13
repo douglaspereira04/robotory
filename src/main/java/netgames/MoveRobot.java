@@ -19,4 +19,8 @@ public class MoveRobot extends Move {
 	public int getRobotY() {
 		return this.y.get(0);
 	}
+	
+	public int getLength() {
+		return x.size() - 1;
+	}
 }

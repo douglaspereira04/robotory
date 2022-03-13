@@ -25,7 +25,7 @@ public class Board {
 	
 	public boolean isRobotMovementInProgress() {
 		if (this.moveInProgress != null) {
-			MoveType type = this.moveInProgress.getMoveType();
+			MoveType type = this.moveInProgress.getType();
 			if (type == MoveType.MOVE_ROBOT) {
 				return true;
 			} else {
@@ -142,7 +142,7 @@ public class Board {
 	
 	public boolean isEnergyPlacementInProgress() {
 		if (this.moveInProgress != null) {
-			MoveType type = this.moveInProgress.getMoveType();
+			MoveType type = this.moveInProgress.getType();
 			if (type == MoveType.PLACE_ENERGY) {
 				return true;
 			} else {
@@ -199,7 +199,7 @@ public class Board {
 	
 	public boolean isGetEnergyInProgress() {
 		if (this.moveInProgress != null) {
-			MoveType type = this.moveInProgress.getMoveType();
+			MoveType type = this.moveInProgress.getType();
 			if (type == MoveType.GET_ENERGY) {
 				return true;
 			} else {

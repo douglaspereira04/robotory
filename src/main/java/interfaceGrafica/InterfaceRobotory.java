@@ -162,6 +162,13 @@ public class InterfaceRobotory {
 			}
 		}
 		
+		frame.getBoardPanel().getEndMoveButton().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				actor.pressEndMove();
+			}
+		});
+		
 	}
 	
 	
