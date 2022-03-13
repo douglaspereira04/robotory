@@ -3,6 +3,8 @@ package interfaceGrafica;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JOptionPane;
 
@@ -52,7 +54,7 @@ public class InterfaceRobotory {
 		return JOptionPane.showInputDialog("Endereço do servidor: ");
 	}
 	
-	public static void notify(String notification) {
+	public void notify(String notification) {
 		JOptionPane.showMessageDialog(null, notification);
 	}
 	
@@ -123,6 +125,23 @@ public class InterfaceRobotory {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				actor.startMatch();
+			}
+		});
+		
+		frame.getBoardPanel().getWhiteSupply().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				actor.getEnergy(true);
+				super.mouseClicked(e);
+			}
+		});
+
+		
+		frame.getBoardPanel().getBlackSupply().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				actor.getEnergy(false);
+				super.mouseClicked(e);
 			}
 		});
 		

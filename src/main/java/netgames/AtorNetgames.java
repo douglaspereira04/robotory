@@ -8,6 +8,7 @@ import br.ufsc.inf.leobr.cliente.Proxy;
 import br.ufsc.inf.leobr.cliente.exception.ArquivoMultiplayerException;
 import br.ufsc.inf.leobr.cliente.exception.JahConectadoException;
 import br.ufsc.inf.leobr.cliente.exception.NaoConectadoException;
+import br.ufsc.inf.leobr.cliente.exception.NaoJogandoException;
 import br.ufsc.inf.leobr.cliente.exception.NaoPossivelConectarException;
 
 public class AtorNetgames implements OuvidorProxy {
@@ -113,6 +114,10 @@ public class AtorNetgames implements OuvidorProxy {
 	public void tratarPartidaNaoIniciada(String message) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void sendMove(Move move) throws NaoJogandoException {
+		proxy.enviaJogada(move);
 	}
 	
 

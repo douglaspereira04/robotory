@@ -1,6 +1,7 @@
 package netgames;
 
 
+import br.ufsc.inf.leobr.cliente.exception.NaoJogandoException;
 import dominioProblema.Board;
 import interfaceGrafica.InterfaceRobotory;
 
@@ -95,6 +96,22 @@ public class InterfaceJogador {
 	
 	public String selectFromPersonalSupply(boolean color, boolean owner) {
 		return null;
+	}
+	
+	public void getEnergy(boolean color) {
+		String message = board.getEnergy(color);
+		if (message.equals("END")) {
+			try {
+				ngames.sendMove(board.getMoveInProgress());
+			} catch (NaoJogandoException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			board.updateState();
+			interfaceRobotory.displayState();
+		} else if(!message.equals("")) {
+			interfaceRobotory.notify(message);
+		}
 	}
 	
 	public void endMatch() {
