@@ -1,22 +1,16 @@
-package view.board;
+package interfaceGrafica;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.swing.JFrame;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import view.board.util.BoardEvent;
-import view.resources.Images;
 /**
  * Swing AWT interface for Robotory board game
  * @author douglas
@@ -39,6 +33,7 @@ public class BoardPanel extends JPanel {
 	protected List<BoardHexagon> p2Supply = null;
 	protected BoardHexagon blackSupply = null;
 	protected BoardHexagon whiteSupply = null;
+	protected JButton endMoveButton = null;
 	
 	/**
 	 * Constructor
@@ -57,7 +52,23 @@ public class BoardPanel extends JPanel {
 		initializeHexagons();
 		initializePersonalSupplies();
 		initializeCommonSupply();
+		
+		initializeEndMoveButton();
 
+	}
+	
+
+	/**
+	 * Initializes end move button
+	 */
+	protected void initializeEndMoveButton() {
+		int xoffset = 30;
+		int yoffset = 58;
+		
+		endMoveButton = new JButton("End Move");
+		endMoveButton.setBounds(xoffset, yoffset, 120, 30);
+		this.add(endMoveButton);
+		
 	}
 
 	/**
@@ -80,7 +91,6 @@ public class BoardPanel extends JPanel {
 			for (int y = 0; y < i; y++) {
 				h = new BoardHexagon(x, y);
 				hexagons.put(new Point(x, y), h);
-				addBoardEvent(h);
 				h.setBounds(xoffset, yoffset + (hexagonsize * y) + (topoffset * y), hexagonsize, hexagonsize);
 				this.add(h);
 			}
@@ -89,13 +99,12 @@ public class BoardPanel extends JPanel {
 			xoffset += leftoffset;
 		}
 
-		x = 4;
+		x = 3;
 		yoffset += (jumpoffset * 2);
 		for (int i = 5; i > 3; i--) {
 			for (int y = 0; y < i; y++) {
 				h = new BoardHexagon(x, y);
 				hexagons.put(new Point(x, y), h);
-				addBoardEvent(h);
 				h.setBounds(xoffset, yoffset + (hexagonsize * y) + (topoffset * y), hexagonsize, hexagonsize);
 				this.add(h);
 			}
@@ -123,41 +132,41 @@ public class BoardPanel extends JPanel {
 
 		BoardHexagon h = null;
 
-		for (int y = 0; y < 3; y++) {
-			h = new BoardHexagon(BoardHexagon.Type.P1_SUPPLY, y);
-			p1Supply.add(h);
-			addBoardEvent(h);
-			h.setBounds(xoffset, yoffset + (hexagonsize * y) + (topoffset * y), hexagonsize, hexagonsize);
-			this.add(h);
-		}
-
-		yoffset -= jumpoffset;
-		xoffset += leftoffset;
-		h = new BoardHexagon(BoardHexagon.Type.P1_SUPPLY, 3);
+		h = new BoardHexagon(BoardHexagon.Type.P1_SUPPLY, 0);
+		h.setText("2");
+		h.setForeground(Color.WHITE);
+		h.setHorizontalTextPosition(JLabel.CENTER);
 		p1Supply.add(h);
-		addBoardEvent(h);
-		h.setBounds(xoffset, yoffset + (hexagonsize * 2) + (topoffset * 2), hexagonsize, hexagonsize);
+		h.setBounds(xoffset, yoffset + (hexagonsize * 0) + (topoffset * 0), hexagonsize, hexagonsize);
+		this.add(h);
+
+		h = new BoardHexagon(BoardHexagon.Type.P1_SUPPLY, 1);
+		h.setText("2");
+		h.setHorizontalTextPosition(JLabel.CENTER);
+		p1Supply.add(h);
+		h.setBounds(xoffset, yoffset + (hexagonsize * 1) + (topoffset * 1), hexagonsize, hexagonsize);
 		this.add(h);
 
 		yoffset = 58;
 		xoffset = 617;
 
-		h = new BoardHexagon(BoardHexagon.Type.P2_SUPPLY, 0);
-		p2Supply.add(h);
-		addBoardEvent(h);
-		h.setBounds(xoffset, yoffset, hexagonsize, hexagonsize);
-		this.add(h);
-
 		yoffset -= jumpoffset;
 		xoffset += leftoffset;
 
-		for (int y = 0; y < 3; y++) {
-			h = new BoardHexagon(BoardHexagon.Type.P2_SUPPLY, y + 1);
-			p2Supply.add(h);
-			addBoardEvent(h);
-			h.setBounds(xoffset, yoffset + (hexagonsize * y) + (topoffset * y), hexagonsize, hexagonsize);
-			this.add(h);
-		}
+		h = new BoardHexagon(BoardHexagon.Type.P2_SUPPLY, 0);
+		h.setText("2");
+		h.setForeground(Color.WHITE);
+		h.setHorizontalTextPosition(JLabel.CENTER);
+		p2Supply.add(h);
+		h.setBounds(xoffset, yoffset + (hexagonsize * 0) + (topoffset * 0), hexagonsize, hexagonsize);
+		this.add(h);
+		
+		h = new BoardHexagon(BoardHexagon.Type.P2_SUPPLY, 1);
+		h.setText("2");
+		h.setHorizontalTextPosition(JLabel.CENTER);
+		p2Supply.add(h);
+		h.setBounds(xoffset, yoffset + (hexagonsize * 1) + (topoffset * 1), hexagonsize, hexagonsize);
+		this.add(h);
 
 	}
 
@@ -177,7 +186,6 @@ public class BoardPanel extends JPanel {
 		h.setHorizontalTextPosition(JLabel.CENTER);
 		h.setForeground(Color.WHITE);
 		blackSupply = h;
-		addBoardEvent(h);
 		h.setBounds(xoffset, yoffset, hexagonsize, hexagonsize);
 		this.add(h);
 
@@ -185,29 +193,13 @@ public class BoardPanel extends JPanel {
 		h.setText("10");
 		h.setHorizontalTextPosition(JLabel.CENTER);
 		whiteSupply = h;
-		addBoardEvent(h);
 		h.setBounds(xoffset + hexagonsize, yoffset, hexagonsize, hexagonsize);
 		this.add(h);
 
 	}
 
-	/**
-	 * Ensure component click event to be dispatched to board itself Make possible
-	 * to handle every board {@link BoardHexagon} click in board click event listener See
-	 * {@link BoardEvent}
-	 * 
-	 * @param component whose click event will dispatch an board event
-	 */
-	protected void addBoardEvent(Component component) {
-		BoardPanel board = this;
-		component.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				BoardEvent event = new BoardEvent(component, e);
-				board.dispatchEvent(event);
-				super.mouseClicked(e);
-			}
-		});
+	public JButton getEndMoveButton() {
+		return endMoveButton;
 	}
 
 	/**
@@ -276,5 +268,8 @@ public class BoardPanel extends JPanel {
 		g.fillRect(0, 0, getWidth(), getHeight());
 		g.drawImage(Images.BOARD, 0, 0, null);
 	}
+	
+	
+
 
 }

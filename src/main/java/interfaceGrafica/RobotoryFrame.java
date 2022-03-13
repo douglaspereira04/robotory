@@ -1,4 +1,4 @@
-package view.robotory;
+package interfaceGrafica;
 
 import java.awt.Dimension;
 
@@ -6,8 +6,6 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-
-import view.board.BoardPanel;
 
 /**
  * Frame designed to display robotory board
@@ -33,6 +31,8 @@ public class RobotoryFrame extends JFrame {
 		this.boardPanel = boardPanel;
 		initialize();
 	}
+	
+	
 
 	public void initialize() {
 		this.setTitle("Robotory");

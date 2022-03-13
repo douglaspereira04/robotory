@@ -1,8 +1,13 @@
 package robotory;
 
-import control.board.BoardController;
-import view.board.BoardPanel;
-import view.robotory.RobotoryFrame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JOptionPane;
+
+import interfaceGrafica.BoardPanel;
+import interfaceGrafica.RobotoryFrame;
+import rede.AtorNetgames;
 
 /**
  * Main class 
@@ -15,9 +20,48 @@ public class Robotory {
 		
 		
 		BoardPanel boardPanel = new BoardPanel();
-		BoardController boardController = new BoardController(boardPanel);
 		
-		RobotoryFrame appView = new RobotoryFrame(boardPanel);
+		RobotoryFrame robotoryFrame = new RobotoryFrame(boardPanel);
+		
+		AtorNetgames atorNetgames = new AtorNetgames();
+		
+		
+		robotoryFrame.getConnectMenuItem().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				String address = JOptionPane.showInputDialog("Endereço do servidor: ");
+				if (address != null) {
+					String name = JOptionPane.showInputDialog("Nome do jogador: ");
+					if (name != null) {
+						String result = atorNetgames.conectar(address, name);
+						JOptionPane.showMessageDialog(robotoryFrame, result);
+					}
+				}
+			}
+		});
+		
+
+		robotoryFrame.getDisconnectMenuItem().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				String result = atorNetgames.desconectar();
+				JOptionPane.showMessageDialog(robotoryFrame, result);
+			}
+		});
+		
+		robotoryFrame.getStartMenuItem().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				String result = atorNetgames.iniciarPartida();
+				JOptionPane.showMessageDialog(robotoryFrame, result);
+			}
+		});
 		
 	}
 

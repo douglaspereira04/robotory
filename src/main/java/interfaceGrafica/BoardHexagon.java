@@ -1,4 +1,4 @@
-package view.board;
+package interfaceGrafica;
 
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -12,8 +12,6 @@ import java.awt.image.BufferedImage;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-
-import view.resources.Images;
 
 /**
  * Label that represents one position in board
@@ -99,11 +97,6 @@ public class BoardHexagon extends JLabel {
 		 * The {@link Hexagon} is empty.
 		 */
 		EMPTY;
-
-		Object getEnumConstants() {
-			// TODO Auto-generated method stub
-			return null;
-		}
 	}
 
 	/**
@@ -205,7 +198,7 @@ public class BoardHexagon extends JLabel {
 	 */
 	public void displayPiece() {
 		Icon icon = null;
-		if (this.piece != Piece.EMPTY) {
+		if (this.piece != Piece.EMPTY && this.piece != null) {
 			icon = new ImageIcon(getImage(this.piece));
 		} else {
 			icon = new ImageIcon();
