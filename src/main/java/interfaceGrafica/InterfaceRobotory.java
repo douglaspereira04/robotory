@@ -1,22 +1,55 @@
 package interfaceGrafica;
 
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JOptionPane;
+
 import netgames.InterfaceJogador;
 
 public class InterfaceRobotory {
 	
 	protected RobotoryFrame frame;
 	protected InterfaceJogador actor;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					InterfaceRobotory window = new InterfaceRobotory();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 	
+	
+	
+	public InterfaceRobotory() {
+		super();
+		this.frame = new RobotoryFrame(new BoardPanel());
+		this.actor = new InterfaceJogador(this);
+		
+		initializeBehavior();
+	}
+
+
+
 	public boolean connect() {
 		return false;
 	}
 	
 	public String getPlayerName() {
-		return null;
+		return JOptionPane.showInputDialog("Nome do jogador: ");
 	}
 	
 	public String getServerIP() {
-		return null;
+		return JOptionPane.showInputDialog("Endereço do servidor: ");
 	}
 	
 	public void notify(String notification) {
@@ -55,6 +88,24 @@ public class InterfaceRobotory {
 		
 	}
 	
+	/**
+	 * Where sequence diagrams that starts 
+	 * with gui calls to InterfaceRobotory are coded
+	 */
+	public void initializeBehavior() {
+		
+		/**
+		 * Connect
+		 */
+		frame.getConnectMenuItem().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				actor.connect();
+			}
+		});
+		
+	}
 	
 	
 }

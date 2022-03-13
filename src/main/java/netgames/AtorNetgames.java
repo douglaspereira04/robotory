@@ -14,16 +14,32 @@ public class AtorNetgames implements OuvidorProxy {
 	
 	private static final long serialVersionUID = 1L;
 	protected Proxy proxy;
+	protected boolean connected;
+	
 	
 	public AtorNetgames() {
 		super();
 		this.proxy = Proxy.getInstance();
 		proxy.addOuvinte(this);	
+		connected = false;
+	}
+	
+	public void defineConnected(boolean value) {
+		this.connected = value;
+	}
+	
+	public boolean isConnected() {
+		return connected;
 	}
 	
 	public String conectar(String servidor, String nome) {
 			try {
 				proxy.conectar(servidor, nome);
+				
+
+				if (connected) {
+					
+				}
 			} catch (JahConectadoException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
