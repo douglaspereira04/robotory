@@ -4,8 +4,13 @@ public class PlaceEnergy extends Move {
 	public int x;
 	public int y;
 	public boolean color;
+
+	public PlaceEnergy(boolean color) {
+		super(MoveType.PLACE_ENERGY);
+		this.color = color;
+	}
 	
-	PlaceEnergy(int x, int y, boolean color) {
+	public PlaceEnergy(int x, int y, boolean color) {
 		super(MoveType.PLACE_ENERGY);
 		this.x = x;
 		this.y = y;

@@ -65,7 +65,7 @@ public class InterfaceJogador {
 	
 	public void selectPosition(int x, int y) {
 		boolean getEnergyInProgress = board.isGetEnergyInProgress();
-		String message = null;
+		String message = "";
 		
 		if (!getEnergyInProgress) {
 			boolean isMoveInProgress = board.isMoveInProgress();
