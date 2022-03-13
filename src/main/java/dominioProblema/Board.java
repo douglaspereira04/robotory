@@ -102,11 +102,47 @@ public class Board {
 	}
 	
 	public String selectFromPersonalSupply(boolean color, boolean owner) {
-		return null;
+		String message = "";
+		boolean co = this.localPlayer.getColor();
+		if (owner == co) {
+			if (!this.isMoveInProgress()) {
+				boolean turn = this.localPlayer.isTurn();
+				if (turn) {
+					boolean empty = this.localPlayer.isEnergyEmpty();
+					if (!empty) {
+						PlaceEnergy move = new PlaceEnergy(color);
+						this.moveInProgress = move;
+					} else {
+						message = "No energy available";
+					}
+				} else {
+					message = "Not your turn";
+				}
+			} else {
+				message = "Invalid selection";
+			}
+		} else {
+			message = "Not your supply";
+		}
+		return message;
 	}
 	
 	public String selectEnergyPlacement(int x, int y) {
-		return null;
+		String message = "";
+		if (this.localPlayer.isTurn()) {
+			Piece piece = this.getPiece(x, y);
+			if (piece == null) {
+				if (this.moveInProgress.moveType == MoveType.PLACE_ENERGY) {
+					((PlaceEnergy) this.moveInProgress).setPlace(x, y);
+					message = "END";
+				}
+			} else {
+				message = "Place not empty";
+			}
+		} else {
+			message = "Not your turn";
+		}
+		return message;
 	}
 	
 	public boolean isEnergyPlacementInProgress() {
