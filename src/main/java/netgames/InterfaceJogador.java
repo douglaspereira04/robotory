@@ -66,8 +66,27 @@ public class InterfaceJogador {
 		return null;
 	}
 	
-	public String startMatch() {
-		return null;
+	public void startMatch() {
+		boolean connected = ngames.isConnected();
+		String message = null;
+		
+		if (connected) {
+			boolean matchInProgress = board.isMatchInProgress();
+			
+			if (matchInProgress) {
+				ngames.finalizarPartidaComErro(null);
+				board.endMatch();
+				ngames.iniciarPartida();
+			}
+			message = "";
+			
+		}else if (!connected) {
+			message = "Not Connected";
+		}
+		
+		if(message!="") {
+			interfaceRobotory.notify(message);
+		}
 	}
 	
 	public void requestMatchStart(int order, String opponent) {

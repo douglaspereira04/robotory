@@ -52,8 +52,8 @@ public class InterfaceRobotory {
 		return JOptionPane.showInputDialog("Endereço do servidor: ");
 	}
 	
-	public void notify(String notification) {
-		
+	public static void notify(String notification) {
+		JOptionPane.showMessageDialog(null, notification);
 	}
 	
 	public void disconnect() {
@@ -113,6 +113,16 @@ public class InterfaceRobotory {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				actor.disconnect();
+			}
+		});
+		
+
+		
+		frame.getStartMenuItem().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				actor.startMatch();
 			}
 		});
 		
