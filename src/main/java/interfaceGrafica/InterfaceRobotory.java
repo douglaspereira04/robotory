@@ -154,7 +154,8 @@ public class InterfaceRobotory {
 					position.addMouseListener(new MouseAdapter() {
 						@Override
 						public void mouseClicked(MouseEvent e) {
-							actor.selectPosition(position.getPosition().x, position.getPosition().y);
+							//actor.selectPosition(position.getPosition().x, position.getPosition().y);
+							JOptionPane.showMessageDialog(null, position.getPosition());
 							super.mouseClicked(e);
 						}
 					});
