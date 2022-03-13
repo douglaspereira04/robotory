@@ -105,6 +105,17 @@ public class InterfaceRobotory {
 			}
 		});
 		
+		/**
+		 * Disconnect
+		 */
+		frame.getDisconnectMenuItem().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				actor.disconnect();
+			}
+		});
+		
 	}
 	
 	

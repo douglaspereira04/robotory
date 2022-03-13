@@ -19,11 +19,6 @@ public class Board {
 		
 	}
 	
-	public boolean disconnectOngoingMatch() {
-		return false;
-		
-	}
-	
 	public String selectRobot(int x, int y) {
 		return null;
 	}

@@ -41,8 +41,25 @@ public class InterfaceJogador {
 		
 	}
 	
-	public boolean disconnect() {
-		return false;
+	public void disconnect() {
+		boolean connected = ngames.isConnected();
+		
+		if(!connected) {
+			interfaceRobotory.notify("Voce não está conectado");
+		}else if (connected) {
+			
+			if(board.isMatchInProgress()) {
+				board.endMatch();
+			}
+			
+			ngames.finalizarPartidaComErro(null);
+			
+			String notification = ngames.desconectar();
+			
+			interfaceRobotory.notify(notification);
+			interfaceRobotory.displayState();
+		}
+		
 	}
 	
 	public String selectPosition(int x, int y) {

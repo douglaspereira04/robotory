@@ -60,6 +60,7 @@ public class AtorNetgames implements OuvidorProxy {
 	public String desconectar() {
 			try {
 				proxy.desconectar();
+				defineConnected(false);
 			} catch (NaoConectadoException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
