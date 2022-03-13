@@ -5,7 +5,7 @@ public class GetEnergy extends Move {
 	public int black;
 	public boolean last;
 	
-	GetEnergy() {
+	public GetEnergy() {
 		super(MoveType.GET_ENERGY);
 		this.white = 0;
 		this.black = 0;

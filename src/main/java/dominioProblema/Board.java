@@ -137,7 +137,7 @@ public class Board {
 	public void applyGetEnergy(GetEnergy move) {
 		if (this.localPlayer.isTurn()) {
 			boolean color = move.getLastEnergy();
-			this.localPlayer.incrementEnergy(color, 1); // remover amount?
+			this.localPlayer.incrementEnergy(color, 1);
 			this.decrementEnergy(color, 1);
 		} else {
 			int white = move.getWhiteAmount();
