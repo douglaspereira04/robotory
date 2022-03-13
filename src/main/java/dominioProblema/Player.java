@@ -14,51 +14,69 @@ public class Player {
 	}
 	
 	public String getName() {
-		return null;
+		return this.name;
 	}
 	
 	public boolean isWinner() {
-		return false;
+		return this.winner;
 	}
 	
 	public void switchTurn() {
-		
+		this.turn = !this.turn;
 	}
 	
 	public void reset() {
-		
+		this.name = null;
+		this.color = false;
+		this.turn = false;
+		this.winner = false;
+		this.whiteEnergy = 2;
+		this.blackEnergy = 2;
 	}
 	
 	public void setFirst() {
-		
+		this.color = true;
+		this.turn = true;
 	}
 	
 	public boolean getColor() {
-		return false;
+		return this.color;
 	}
 	
 	public void setWinner(boolean winner) {
-		
+		this.winner = winner;
 	}
 	
-	public void isEnergyEmpty(boolean color) {
-		
+	public boolean isEnergyEmpty(boolean color) {
+		if (color) {
+			return (this.whiteEnergy == 0);
+		} else {
+			return (this.blackEnergy == 0);
+		}
 	}
 
-	public void decrementEnergy(boolean color){
-		
+	public void decrementEnergy(boolean color) {
+		if (color) {
+			this.whiteEnergy -= 1;
+		} else {
+			this.blackEnergy -= 1;
+		}
 	}
 	
-	public void incrementEnergy(boolean color){
-		
+	public void incrementEnergy(boolean color) {
+		if (color) {
+			this.whiteEnergy += 1;
+		} else {
+			this.blackEnergy += 1;
+		}
 	}
 	
 	public boolean isEnergyFull() {
-		return false;
+		return (this.whiteEnergy + this.blackEnergy == 4);
 	}
 	
 	public boolean isEnergyEmpty() {
-		return false;
+		return (this.whiteEnergy + this.blackEnergy == 0);
 	}
 	
 	
