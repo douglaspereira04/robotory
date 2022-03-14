@@ -173,6 +173,7 @@ public class InterfaceJogador {
 		} else if(!message.equals("")) {
 			interfaceRobotory.notify(message);
 		}
+		
 		interfaceRobotory.displayState();
 	}
 	

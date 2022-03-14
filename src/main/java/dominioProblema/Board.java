@@ -187,12 +187,11 @@ public class Board {
 				
 			}
 		} else {
-			String name = this.localPlayer.getName();
 			if (this.localPlayer.isWinner()) {
-				this.setMessage(name); // ?
+				this.setMessage("You won");
 			} else {
-				this.remotePlayer.isWinner();
-				this.setMessage(name); // ?
+				String name = this.remotePlayer.getName();
+				this.setMessage(name + " won");
 			}
 		}
 		this.clearMoveInProgress();
@@ -280,7 +279,7 @@ public class Board {
 		return this.matchInProgress;
 	}
 	
-	public void checkMatchEnd() { // Modificar diagrama de sequencia
+	public void checkMatchEnd() {
 		int blackSide = 0, whiteSide = 0;
 		if (this.whiteEnergy == 0 || this.blackEnergy == 0) {
 			for (int i = 0; i < 5; i++) {
@@ -308,6 +307,14 @@ public class Board {
 				}
 			}
 			this.matchInProgress = false;
+			
+			boolean localWinner = localPlayer.isWinner();
+			
+			if (localWinner) {
+				this.setMessage("You won");
+			}else {
+				this.setMessage(remotePlayer.getName() + " won");
+			}
 		}
 	}
 	
@@ -454,8 +461,10 @@ public class Board {
 		if (isGetEnergyInProgress() || this.moveInProgress == null) {
 			if (this.localPlayer.isTurn()) {
 				if (!this.localPlayer.isEnergyFull()) {
-					if (this.moveInProgress == null);
+					if (this.moveInProgress == null) {
 						moveInProgress = new GetEnergy();
+					}
+					
 					GetEnergy move = (GetEnergy)moveInProgress;
 					move.addEnergy(color);
 					move.setLastEnergy(color);
