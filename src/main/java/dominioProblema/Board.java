@@ -18,7 +18,18 @@ public class Board {
 	protected int blackEnergy;
 	
 	public void receiveMove(Move move) {
-		
+		MoveType type = move.getMoveType();
+		switch(type) {
+		case PLACE_ENERGY:
+			this.applyEnergyPlacement((PlaceEnergy) move);
+			break;
+		case MOVE_ROBOT:
+			this.applyRobotMovement((MoveRobot) move);
+			break;
+		case GET_ENERGY:
+			this.applyGetEnergy((GetEnergy) move);
+			break;
+		}
 	}
 	
 	public boolean disconnectOngoingMatch() {
@@ -84,7 +95,52 @@ public class Board {
 	}
 	
 	public String selectEnergy(int x, int y) {
-		return null;
+		String message = "";
+		
+		boolean turn = localPlayer.isTurn();
+		
+		if (turn) {
+			Piece piece = getPiece(x, y);
+			int robotX = ((MoveRobot)moveInProgress).getRobotX();
+			int robotY = ((MoveRobot)moveInProgress).getRobotY();
+			
+			Piece robot = getPiece(robotX, robotY);
+			boolean compatible = isCompatible(robot, piece);
+			
+			if (compatible) {
+				int x2 = ((MoveRobot)moveInProgress).getLastX();
+				int y2 = ((MoveRobot)moveInProgress).getLastY();
+				
+				boolean reachable = isReachable(x, y, x2, y2);
+				
+				if (reachable) {
+					boolean registered = ((MoveRobot)moveInProgress).isRegistered(x,y);
+				
+					if (!registered) {
+						
+						((MoveRobot)moveInProgress).addEnergy(x, y);
+						
+						boolean canMove = canMove(x, y);
+						
+						if (!canMove) {
+							message = "END";
+						} else if(canMove) {
+							message = "";
+						}
+					} else if (registered) {
+						message = "Already registered";
+					}
+				} else if(!reachable) {
+					message = "Unreachable piece";
+				}
+			}else if(!compatible) {
+				message = "Incompatible piece";
+			}
+		} else if(!turn) {
+			message = "Not your turn";
+		}
+		
+		return message;
 	}
 	
 	public void updateState() {
