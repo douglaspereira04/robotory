@@ -9,6 +9,9 @@ public class Player {
 	protected int whiteEnergy;
 	protected int blackEnergy;
 	
+	public Player() {
+	}
+	
 	public Player(String opponent) {
 		this.name = opponent;
 	}

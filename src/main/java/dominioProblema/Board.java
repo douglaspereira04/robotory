@@ -203,7 +203,7 @@ public class Board {
 	
 	public void endMatch() {
 		this.setInitialState(0, "");
-		this.remotePlayer.reset();
+		this.remotePlayer = new Player();
 		this.localPlayer.reset();
 		this.updateState();
 	}
