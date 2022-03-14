@@ -33,7 +33,7 @@ public class InterfaceJogador {
 			String address = interfaceRobotory.getServerIP();
 			String name = interfaceRobotory.getPlayerName();
 			
-			String notification = ngames.conectar(address, name);
+			String notification = ngames.connect(address, name);
 			
 			if(notification.equals("Sucesso: conectado a Netgames Server")) {
 				ngames.defineConnected(true);
@@ -55,9 +55,9 @@ public class InterfaceJogador {
 				board.endMatch();
 			}
 			
-			ngames.finalizarPartidaComErro(null);
+			ngames.endMatch();
 			
-			String notification = ngames.desconectar();
+			String notification = ngames.disconnect();
 			
 			interfaceRobotory.notify(notification);
 			interfaceRobotory.displayState();
@@ -121,9 +121,9 @@ public class InterfaceJogador {
 			boolean matchInProgress = board.isMatchInProgress();
 			
 			if (matchInProgress) {
-				ngames.finalizarPartidaComErro(null);
+				ngames.endMatch();
 				board.endMatch();
-				ngames.iniciarPartida();
+				ngames.startMatch();
 			}
 			message = "";
 			

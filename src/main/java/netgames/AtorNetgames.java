@@ -35,9 +35,9 @@ public class AtorNetgames implements OuvidorProxy {
 		return connected;
 	}
 	
-	public String conectar(String servidor, String nome) {
+	public String connect(String server, String name) {
 			try {
-				proxy.conectar(servidor, nome);
+				proxy.conectar(server, name);
 				
 
 				if (connected) {
@@ -60,7 +60,7 @@ public class AtorNetgames implements OuvidorProxy {
 		
 	}
 
-	public String desconectar() {
+	public String disconnect() {
 			try {
 				proxy.desconectar();
 				defineConnected(false);
@@ -72,7 +72,7 @@ public class AtorNetgames implements OuvidorProxy {
 			return "Sucesso: desconectado de Netgames Server";
 	}
 
-	public String iniciarPartida() {
+	public String startMatch() {
 		try {
 			proxy.iniciarPartida(new Integer(2)); // supondo 2 jogadores, o que pode ser alterado
 		} catch (NaoConectadoException e) {
@@ -91,7 +91,7 @@ public class AtorNetgames implements OuvidorProxy {
 
 	@Override
 	public void finalizarPartidaComErro(String message) {
-		// TODO Auto-generated method stub
+		interfaceJogador.endMatch();
 		
 	}
 
@@ -119,6 +119,18 @@ public class AtorNetgames implements OuvidorProxy {
 	
 	public void sendMove(Move move) throws NaoJogandoException {
 		proxy.enviaJogada(move);
+	}
+	
+	public void endMatch() {
+		try {
+			proxy.finalizarPartida();
+		} catch (NaoConectadoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NaoJogandoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 
