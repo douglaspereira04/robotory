@@ -9,7 +9,7 @@ import netgames.MoveType;
 import netgames.PlaceEnergy;
 
 public class Board {
-	protected Piece[][] board = new Piece[6][5];
+	protected Piece[][] board = new Piece[5][6];
 	protected Player localPlayer;
 	protected Player remotePlayer;
 	protected boolean matchInProgress = false;
@@ -44,7 +44,7 @@ public class Board {
 	}
 	
 	public Piece getPiece(int x, int y) {
-		if (x < 6 && y < 5) {
+		if (x < 5 && y < 6) {
 			return this.board[x][y];
 		}
 		return null;
@@ -118,11 +118,14 @@ public class Board {
 	}
 	
 	public void placePiece(int x, int y, Piece piece) {
-		
+		this.board[x][y] = piece;
 	}
 	
 	public void endMatch() {
-		
+		this.setInitialState(0, "");
+		this.remotePlayer = new Player();
+		this.localPlayer.reset();
+		this.updateState();
 	}
 	
 	public void setInitialState(int order, String opponent) {
@@ -237,7 +240,21 @@ public class Board {
 	}
 	
 	public void applyEnergyPlacement(PlaceEnergy move) {
-		
+		int x = move.getX();
+		int y = move.getY();
+		boolean color = move.getColor();
+		Piece piece;
+		if (color) {
+			piece = new Piece(Type.WHITE_ENERGY);
+		} else {
+			piece = new Piece(Type.BLACK_ENERGY);
+		}
+		this.placePiece(x, y, piece);
+		if(this.localPlayer.isTurn()) {
+			this.localPlayer.decrementEnergy(color);
+		} else {
+			this.remotePlayer.decrementEnergy(color);
+		}
 	}
 	
 	public void decrementEnergy(boolean color, int amount) {
