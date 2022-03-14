@@ -164,7 +164,8 @@ public class InterfaceJogador {
 	}
 	
 	public void endMatch() {
-		
+		board.endMatch();
+		interfaceRobotory.displayState();
 	}
 	
 	public Move getMoveInProgress() {
