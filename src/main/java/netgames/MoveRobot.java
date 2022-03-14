@@ -1,7 +1,6 @@
 package netgames;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class MoveRobot extends Move {
 	public ArrayList<Integer> x;
