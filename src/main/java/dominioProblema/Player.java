@@ -83,10 +83,6 @@ public class Player {
 	public boolean isEnergyFull() {
 		return (this.whiteEnergy + this.blackEnergy == 4);
 	}
-	
-	public boolean isEnergyEmpty() {
-		return (this.whiteEnergy + this.blackEnergy == 0);
-	}
 
 	public int getWhiteEnergy() {
 		return whiteEnergy;
