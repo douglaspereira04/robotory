@@ -1,6 +1,7 @@
 package dominioProblema;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import netgames.GetEnergy;
 import netgames.Move;
@@ -89,7 +90,9 @@ public class Board {
 	}
 	
 	public Piece removePiece(int x, int y) {
-		return null;
+		Piece piece = board[x][y];
+		board[x][y] = null;
+		return piece;
 	}
 	
 	public void placePiece(int x, int y, Piece piece) {
@@ -109,6 +112,25 @@ public class Board {
 	}
 	
 	public void applyRobotMovement(MoveRobot move) {
+		int length = move.getLength();
+		
+		for (int i = 0; i < length; i++) {
+			int x = move.getEnergyXAt(i);
+			int y = move.getEnergyYAt(i);
+			
+			this.removePiece(x, y);
+		}
+		
+		int x = move.getRobotX();
+		int y = move.getRobotY();
+		
+		Piece robot = removePiece(x, y);
+
+		x = move.getEnergyXAt(length-1);
+		y = move.getEnergyYAt(length-1);
+		
+		this.placePiece(x, y, robot);
+		
 		
 	}
 	

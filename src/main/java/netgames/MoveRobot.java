@@ -23,4 +23,14 @@ public class MoveRobot extends Move {
 	public int getLength() {
 		return x.size() - 1;
 	}
+
+	public int getEnergyXAt(int i) {
+		// TODO Auto-generated method stub
+		return x.get(i+1);
+	}
+
+	public int getEnergyYAt(int i) {
+		// TODO Auto-generated method stub
+		return y.get(i+1);
+	}
 }
