@@ -23,8 +23,8 @@ public class Images {
 	private static Image getImage(String name, int width, int height) {
 		Image board = null;
 		try {
-			board = ImageIO.read(BoardPanel.class.getResource("/view/board/"+name));
-			//board = ImageIO.read(InterfaceRobotory.class.getResourceAsStream("/resources/view/board/"+name));
+			//board = ImageIO.read(BoardPanel.class.getResource("/view/board/"+name));
+			board = ImageIO.read(InterfaceRobotory.class.getResourceAsStream("/resources/view/board/"+name));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
