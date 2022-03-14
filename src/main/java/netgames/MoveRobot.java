@@ -10,6 +10,8 @@ public class MoveRobot extends Move {
 		super(MoveType.MOVE_ROBOT);
 		this.x = new ArrayList<Integer>();
 		this.y = new ArrayList<Integer>();
+		this.x.add(x);
+		this.y.add(y);
 	}
 	
 	public int getRobotX() {

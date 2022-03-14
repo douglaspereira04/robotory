@@ -45,9 +45,12 @@ public class Board {
 				boolean holdsRobot = piece.holdsRobot();
 				
 				if (holdsRobot) {
-					boolean canMove = canMove(x, y);
+					
+					Type type = piece.getType();
+					boolean canMove = canMove(type, x, y);
 					
 					if (canMove) {
+						System.out.println("Robot selected");
 						moveInProgress = new MoveRobot(x, y);
 						message = "";
 					}else if(!canMove) {
@@ -102,15 +105,21 @@ public class Board {
 		return reachable;
 	}
 	
-	public boolean canMove(int x, int y) {
+	public boolean canMove(Type type, int x, int y) {
 		boolean canMove = false;
 		for (int i = 0; i < 5 && canMove == false; i++) {
 			for (int j = 0; j < 6 && canMove == false; j++) {
-				boolean reachable = this.isReachable(x, y, i, j);
-				if (reachable) {
-					Piece piece = this.getPiece(i, j);
-					Piece robot = this.getPiece(x, y);
-					canMove = this.isCompatible(robot, piece);
+				boolean registered = false;
+				if(this.moveInProgress != null) {
+					registered = ((MoveRobot)this.moveInProgress).isRegistered(i, j);
+				}
+				if(!registered) {
+					boolean reachable = this.isReachable(x, y, i, j);
+					if (reachable) {
+						Piece piece = this.getPiece(i, j);
+						Piece robot = new Piece(type);
+						canMove = this.isCompatible(robot, piece);
+					}
 				}
 			}
 		}
@@ -142,12 +151,13 @@ public class Board {
 					if (!registered) {
 						
 						((MoveRobot)moveInProgress).addEnergy(x, y);
-						
-						boolean canMove = canMove(x, y);
-						
+						Type type = robot.getType();
+						boolean canMove = canMove(type, x, y);
 						if (!canMove) {
+							System.out.println("Cant move");
 							message = "END";
 						} else if(canMove) {
+							System.out.println("Can move");
 							message = "";
 						}
 					} else if (registered) {
@@ -170,11 +180,11 @@ public class Board {
 		if (this.matchInProgress) {
 			this.localPlayer.switchTurn();
 			this.remotePlayer.switchTurn();
-			String name = "";
 			if (this.localPlayer.isTurn()) {
-				name = this.localPlayer.getName();
+				message = "Sua vez";
 			} else {
-				name = this.remotePlayer.getName();
+				message = "Vez de "+this.remotePlayer.getName();
+				
 			}
 		} else {
 			String name = this.localPlayer.getName();
@@ -204,8 +214,11 @@ public class Board {
 	
 	public void endMatch() {
 		this.setInitialState(0, "");
+		this.matchInProgress = false;
 		this.remotePlayer = new Player();
 		this.localPlayer.reset();
+		
+		this.message = "Partida encerrada";
 		this.updateState();
 	}
 	
@@ -214,10 +227,13 @@ public class Board {
 		this.moveInProgress = null;
 		this.board = new Piece[5][6];
 		this.board[1][2] = new Piece(Type.RED_ROBOT);
-		this.board[2][2] = new Piece(Type.BLACK_ENERGY);
+		this.board[2][2] = new Piece(Type.BLACK_ROBOT);
 		this.board[3][2] = new Piece(Type.WHITE_ROBOT);
 		this.whiteEnergy = 10;
 		this.blackEnergy = 10;
+		
+		if(localPlayer == null)
+			localPlayer = new Player();
 		
 		localPlayer.reset();
 		
@@ -225,9 +241,12 @@ public class Board {
 		
 		if (order == 1) {
 			localPlayer.setFirst();
+			message = "Sua vez";
 		} else if(order == 2){
 			remotePlayer.setFirst();
+			message = "Vez de "+opponent;
 		}
+		
 	}
 	
 	public void setMessage(String message) {
@@ -393,6 +412,8 @@ public class Board {
 			int black = move.getBlackAmount();
 			this.remotePlayer.incrementEnergy(true, white);
 			this.remotePlayer.incrementEnergy(false, black);
+			System.out.println(white);
+			System.out.println(black);
 			this.decrementEnergy(true, white);
 			this.decrementEnergy(false, black);
 		}
@@ -433,10 +454,11 @@ public class Board {
 		if (isGetEnergyInProgress() || this.moveInProgress == null) {
 			if (this.localPlayer.isTurn()) {
 				if (!this.localPlayer.isEnergyFull()) {
-					GetEnergy move = new GetEnergy();
+					if (this.moveInProgress == null);
+						moveInProgress = new GetEnergy();
+					GetEnergy move = (GetEnergy)moveInProgress;
 					move.addEnergy(color);
 					move.setLastEnergy(color);
-					this.moveInProgress = move;
 					this.applyGetEnergy(move);
 					if (this.localPlayer.isEnergyFull() || !this.matchInProgress) {
 						message = "END";

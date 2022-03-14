@@ -34,6 +34,7 @@ public class BoardPanel extends JPanel {
 	protected BoardHexagon blackSupply = null;
 	protected BoardHexagon whiteSupply = null;
 	protected JButton endMoveButton = null;
+	protected JLabel message = null;
 	
 	/**
 	 * Constructor
@@ -54,7 +55,21 @@ public class BoardPanel extends JPanel {
 		initializeCommonSupply();
 		
 		initializeEndMoveButton();
+		
+		initializeMessage();
+		
+	}
 
+	/**
+	 * Initializes message
+	 */
+	protected void initializeMessage() {
+		int xoffset = 30;
+		int yoffset = 98;
+		
+		message = new JLabel("");
+		message.setBounds(xoffset, yoffset, 200, 30);
+		this.add(message);
 	}
 	
 
@@ -256,6 +271,10 @@ public class BoardPanel extends JPanel {
 	 */
 	public BoardHexagon getWhiteSupply() {
 		return whiteSupply;
+	}
+
+	public JLabel getMessage() {
+		return message;
 	}
 
 	/**

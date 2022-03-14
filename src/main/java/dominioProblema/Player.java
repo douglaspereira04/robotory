@@ -10,14 +10,16 @@ public class Player {
 	protected int blackEnergy;
 	
 	public Player() {
+		reset();
 	}
 	
 	public Player(String opponent) {
+		reset();
 		this.name = opponent;
 	}
 
 	public boolean isTurn() {
-		return false;
+		return this.turn;
 	}
 	
 	public String getName() {

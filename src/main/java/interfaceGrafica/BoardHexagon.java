@@ -204,7 +204,11 @@ public class BoardHexagon extends JLabel {
 			icon = new ImageIcon();
 		}
 
-		if (!this.getIcon().equals(icon)) {
+		if(this.getIcon() != null) {
+			if (!this.getIcon().equals(icon)) {
+				this.setIcon(icon);
+			}
+		} else {
 			this.setIcon(icon);
 		}
 	}
@@ -217,22 +221,25 @@ public class BoardHexagon extends JLabel {
 	 */
 	private Image getImage(Piece piece) {
 
-		switch (piece) {
-		case RED_ROBOT:
-			return Images.RED_ROBOT;
-		case BLACK_ROBOT:
-			return Images.BLACK_ROBOT;
-		case WHITE_ROBOT:
-			return Images.WHITE_ROBOT;
-		case BLACK_ENERGY:
-			return Images.BLACK_ENERGY;
-		case WHITE_ENERGY:
-			return Images.WHITE_ENERGY;
-		case EMPTY:
-			return null;
-		default:
-			return null;
+		if(piece != null) {
+			switch (piece) {
+			case RED_ROBOT:
+				return Images.RED_ROBOT;
+			case BLACK_ROBOT:
+				return Images.BLACK_ROBOT;
+			case WHITE_ROBOT:
+				return Images.WHITE_ROBOT;
+			case BLACK_ENERGY:
+				return Images.BLACK_ENERGY;
+			case WHITE_ENERGY:
+				return Images.WHITE_ENERGY;
+			case EMPTY:
+				return null;
+			default:
+				return null;
+			}
 		}
+		return null;
 	}
 
 	/**

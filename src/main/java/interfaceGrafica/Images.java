@@ -24,7 +24,7 @@ public class Images {
 		Image board = null;
 		try {
 			board = ImageIO.read(BoardPanel.class.getResource("/view/board/"+name));
-			//for jar board = ImageIO.read(Robotory.class.getResourceAsStream("/resources/view/board/"+name));
+			//board = ImageIO.read(InterfaceRobotory.class.getResourceAsStream("/resources/view/board/"+name));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

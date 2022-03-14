@@ -42,6 +42,8 @@ public class InterfaceJogador {
 			if(notification.equals("Sucesso: conectado a Netgames Server")) {
 				ngames.defineConnected(true);
 			}
+			
+			interfaceRobotory.notify(notification);
 		}else if(connected) {
 			interfaceRobotory.notify("Voce ja esta conectado");
 		}
@@ -87,7 +89,7 @@ public class InterfaceJogador {
 					}
 					
 				}else if(!robotMovementInProgress) {
-					message = board.selectEnergy(x, y);
+					message = board.selectEnergyPlacement(x, y);
 					if(message.equals("END")) {
 						board.applyEnergyPlacement((PlaceEnergy) board.getMoveInProgress());
 					}
@@ -106,6 +108,8 @@ public class InterfaceJogador {
 					e.printStackTrace();
 				}
 				board.updateState();
+				
+				interfaceRobotory.displayState();
 			}else if (!message.equals("")) {
 				interfaceRobotory.notify(message);
 				board.clearMoveInProgress();
@@ -119,7 +123,7 @@ public class InterfaceJogador {
 	
 	public void startMatch() {
 		boolean connected = ngames.isConnected();
-		String message = null;
+		String message = "";
 		
 		if (connected) {
 			boolean matchInProgress = board.isMatchInProgress();
@@ -127,21 +131,26 @@ public class InterfaceJogador {
 			if (matchInProgress) {
 				ngames.endMatch();
 				board.endMatch();
-				ngames.startMatch();
 			}
-			message = "";
+			message = ngames.startMatch();
 			
 		}else if (!connected) {
 			message = "Not Connected";
 		}
 		
-		if(message.equals("")) {
+		if(!message.equals("")) {
 			interfaceRobotory.notify(message);
 		}
 	}
 	
 	public void requestMatchStart(int order, String opponent) {
+		System.out.print("Receive requestMatchStart");
 		board.setInitialState(order, opponent);
+		interfaceRobotory.displayState();
+		System.out.print("Display state");
+		
+		
+	
 	}
 	
 	public void selectFromPersonalSupply(boolean color, boolean owner) {
@@ -161,10 +170,10 @@ public class InterfaceJogador {
 				e.printStackTrace();
 			}
 			board.updateState();
-			interfaceRobotory.displayState();
 		} else if(!message.equals("")) {
 			interfaceRobotory.notify(message);
 		}
+		interfaceRobotory.displayState();
 	}
 	
 	public void endMatch() {

@@ -90,81 +90,103 @@ public class InterfaceRobotory {
 	public void displayState() {
 		Board board = actor.getBoard();
 		
+		String message = board.getMessage();
+		frame.getBoardPanel().getMessage().setText(message);
+		
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 6; j++) {
-				Piece piece = board.getPiece(i, j);
-				if(piece == null) {
-					frame.getBoardPanel().getHexagon(i, j).setPiece(null);
-				}else if(piece.getType() == Type.BLACK_ENERGY){
-					frame.getBoardPanel().getHexagon(i, j).setPiece(interfaceGrafica.BoardHexagon.Piece.BLACK_ENERGY);
-				}else if(piece.getType() == Type.WHITE_ENERGY){
-					frame.getBoardPanel().getHexagon(i, j).setPiece(interfaceGrafica.BoardHexagon.Piece.WHITE_ENERGY);
-				}else if(piece.getType() == Type.BLACK_ROBOT){
-					frame.getBoardPanel().getHexagon(i, j).setPiece(interfaceGrafica.BoardHexagon.Piece.BLACK_ROBOT);
-				}else if(piece.getType() == Type.WHITE_ROBOT){
-					frame.getBoardPanel().getHexagon(i, j).setPiece(interfaceGrafica.BoardHexagon.Piece.WHITE_ROBOT);
-				}else if(piece.getType() == Type.RED_ROBOT){
-					frame.getBoardPanel().getHexagon(i, j).setPiece(interfaceGrafica.BoardHexagon.Piece.RED_ROBOT);
-				} else {
-					frame.getBoardPanel().getHexagon(i, j).setPiece(null);
+				if(frame.getBoardPanel().getHexagon(i, j) != null) {
+					Piece piece = board.getPiece(i, j);
+					if(piece == null) {
+						frame.getBoardPanel().getHexagon(i, j).setPiece(null);
+					}else if(piece.getType() == Type.BLACK_ENERGY){
+						frame.getBoardPanel().getHexagon(i, j).setPiece(interfaceGrafica.BoardHexagon.Piece.BLACK_ENERGY);
+					}else if(piece.getType() == Type.WHITE_ENERGY){
+						frame.getBoardPanel().getHexagon(i, j).setPiece(interfaceGrafica.BoardHexagon.Piece.WHITE_ENERGY);
+					}else if(piece.getType() == Type.BLACK_ROBOT){
+						frame.getBoardPanel().getHexagon(i, j).setPiece(interfaceGrafica.BoardHexagon.Piece.BLACK_ROBOT);
+					}else if(piece.getType() == Type.WHITE_ROBOT){
+						frame.getBoardPanel().getHexagon(i, j).setPiece(interfaceGrafica.BoardHexagon.Piece.WHITE_ROBOT);
+					}else if(piece.getType() == Type.RED_ROBOT){
+						frame.getBoardPanel().getHexagon(i, j).setPiece(interfaceGrafica.BoardHexagon.Piece.RED_ROBOT);
+					} else {
+						frame.getBoardPanel().getHexagon(i, j).setPiece(interfaceGrafica.BoardHexagon.Piece.EMPTY);
+					}
+					frame.getBoardPanel().getHexagon(i, j).displayPiece();
 				}
-				frame.getBoardPanel().getHexagon(i, j).displayPiece();
+				
 			}
 		}
+		
+		try {
+			
+			int blackEnergy = board.getBlackEnergy();
+			int whiteEnergy = board.getWhiteEnergy();
 
-		int blackEnergy = board.getBlackEnergy();
-		int whiteEnergy = board.getWhiteEnergy();
+			frame.getBoardPanel().getBlackSupply().setText(""+blackEnergy);
+			frame.getBoardPanel().getWhiteSupply().setText(""+whiteEnergy);
+			
+			frame.getBoardPanel().getBlackSupply().setPiece(interfaceGrafica.BoardHexagon.Piece.BLACK_ENERGY);
+			frame.getBoardPanel().getWhiteSupply().setPiece(interfaceGrafica.BoardHexagon.Piece.WHITE_ENERGY);
+			
+			frame.getBoardPanel().getBlackSupply().displayPiece();
+			frame.getBoardPanel().getWhiteSupply().displayPiece();
+			
+			int p1BlackEnergy;
+			int p1WhiteEnergy;
+			int p2BlackEnergy;
+			int p2WhiteEnergy;
+			
+			if (board.getLocalPlayer().getColor() == true) {
+				p1BlackEnergy = board.getLocalPlayer().getBlackEnergy();
+				p1WhiteEnergy = board.getLocalPlayer().getWhiteEnergy();
+				p2BlackEnergy = board.getRemotePlayer().getBlackEnergy();
+				p2WhiteEnergy = board.getRemotePlayer().getWhiteEnergy();
+			} else {
+				p1BlackEnergy = board.getRemotePlayer().getBlackEnergy();
+				p1WhiteEnergy = board.getRemotePlayer().getWhiteEnergy();
+				p2BlackEnergy = board.getLocalPlayer().getBlackEnergy();
+				p2WhiteEnergy = board.getLocalPlayer().getWhiteEnergy();
+			}
 
-		frame.getBoardPanel().getBlackSupply().setText(""+blackEnergy);
-		frame.getBoardPanel().getWhiteSupply().setText(""+whiteEnergy);
-		
-		int p1BlackEnergy;
-		int p1WhiteEnergy;
-		int p2BlackEnergy;
-		int p2WhiteEnergy;
-		
-		if (board.getLocalPlayer().getColor() == true) {
-			p1BlackEnergy = board.getLocalPlayer().getBlackEnergy();
-			p1WhiteEnergy = board.getLocalPlayer().getWhiteEnergy();
-			p2BlackEnergy = board.getRemotePlayer().getBlackEnergy();
-			p2WhiteEnergy = board.getRemotePlayer().getWhiteEnergy();
-		} else {
-			p1BlackEnergy = board.getRemotePlayer().getBlackEnergy();
-			p1WhiteEnergy = board.getRemotePlayer().getWhiteEnergy();
-			p2BlackEnergy = board.getLocalPlayer().getBlackEnergy();
-			p2WhiteEnergy = board.getLocalPlayer().getWhiteEnergy();
-		}
+			frame.getBoardPanel().getP1Supply(0).setText(""+p1BlackEnergy);
+			frame.getBoardPanel().getP1Supply(1).setText(""+p1WhiteEnergy);
+			frame.getBoardPanel().getP2Supply(0).setText(""+p2BlackEnergy);
+			frame.getBoardPanel().getP2Supply(1).setText(""+p2WhiteEnergy);
+			
+			if (p1BlackEnergy == 0) {
+				frame.getBoardPanel().getP1Supply(0).setPiece(interfaceGrafica.BoardHexagon.Piece.EMPTY);
+			}else {
+				frame.getBoardPanel().getP1Supply(0).setPiece(interfaceGrafica.BoardHexagon.Piece.BLACK_ENERGY);
+			}
+			
+			if (p1WhiteEnergy == 0) {
+				frame.getBoardPanel().getP1Supply(1).setPiece(interfaceGrafica.BoardHexagon.Piece.EMPTY);
+			}else {
+				frame.getBoardPanel().getP1Supply(1).setPiece(interfaceGrafica.BoardHexagon.Piece.WHITE_ENERGY);
+			}
 
-		frame.getBoardPanel().getP1Supply(0).setText(""+p1BlackEnergy);
-		frame.getBoardPanel().getP1Supply(1).setText(""+p1WhiteEnergy);
-		frame.getBoardPanel().getP2Supply(0).setText(""+p2BlackEnergy);
-		frame.getBoardPanel().getP2Supply(1).setText(""+p2WhiteEnergy);
-		
-		if (p1BlackEnergy == 0) {
-			frame.getBoardPanel().getP1Supply(0).setPiece(null);
-		}else {
-			frame.getBoardPanel().getP1Supply(0).setPiece(interfaceGrafica.BoardHexagon.Piece.BLACK_ENERGY);
-		}
-		
-		if (p1WhiteEnergy == 0) {
-			frame.getBoardPanel().getP1Supply(1).setPiece(null);
-		}else {
-			frame.getBoardPanel().getP1Supply(1).setPiece(interfaceGrafica.BoardHexagon.Piece.WHITE_ENERGY);
-		}
-
-		if (p2BlackEnergy == 0) {
-			frame.getBoardPanel().getP2Supply(0).setPiece(null);
-		}else {
-			frame.getBoardPanel().getP2Supply(0).setPiece(interfaceGrafica.BoardHexagon.Piece.BLACK_ENERGY);
-		}
-		
-		if (p2WhiteEnergy == 0) {
-			frame.getBoardPanel().getP2Supply(1).setPiece(null);
-		}else {
-			frame.getBoardPanel().getP2Supply(1).setPiece(interfaceGrafica.BoardHexagon.Piece.WHITE_ENERGY);
-		}
-		
-		
+			if (p2BlackEnergy == 0) {
+				frame.getBoardPanel().getP2Supply(0).setPiece(interfaceGrafica.BoardHexagon.Piece.EMPTY);
+			}else {
+				frame.getBoardPanel().getP2Supply(0).setPiece(interfaceGrafica.BoardHexagon.Piece.BLACK_ENERGY);
+			}
+			
+			if (p2WhiteEnergy == 0) {
+				frame.getBoardPanel().getP2Supply(1).setPiece(interfaceGrafica.BoardHexagon.Piece.EMPTY);
+			}else {
+				frame.getBoardPanel().getP2Supply(1).setPiece(interfaceGrafica.BoardHexagon.Piece.WHITE_ENERGY);
+			}
+			
+			frame.getBoardPanel().getP1Supply(0).displayPiece();
+			frame.getBoardPanel().getP1Supply(1).displayPiece();
+			frame.getBoardPanel().getP2Supply(0).displayPiece();
+			frame.getBoardPanel().getP2Supply(1).displayPiece();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
 	}
 	
 	/**
