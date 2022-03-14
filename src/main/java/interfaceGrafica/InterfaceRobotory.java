@@ -9,6 +9,9 @@ import java.util.Iterator;
 
 import javax.swing.JOptionPane;
 
+import dominioProblema.Board;
+import dominioProblema.Piece;
+import dominioProblema.Type;
 import netgames.InterfaceJogador;
 
 public class InterfaceRobotory {
@@ -63,10 +66,6 @@ public class InterfaceRobotory {
 		actor.disconnect();
 	}
 	
-	public void displayState() {
-		
-	}
-	
 	public void selectPosition(int x, int y) {
 		actor.selectPosition(x, y);
 	}
@@ -85,6 +84,87 @@ public class InterfaceRobotory {
 	
 	public void pressEndMove() {
 		actor.pressEndMove();
+	}
+
+	
+	public void displayState() {
+		Board board = actor.getBoard();
+		
+		for (int i = 0; i < 5; i++) {
+			for (int j = 0; j < 6; j++) {
+				Piece piece = board.getPiece(i, j);
+				if(piece == null) {
+					frame.getBoardPanel().getHexagon(i, j).setPiece(null);
+				}else if(piece.getType() == Type.BLACK_ENERGY){
+					frame.getBoardPanel().getHexagon(i, j).setPiece(interfaceGrafica.BoardHexagon.Piece.BLACK_ENERGY);
+				}else if(piece.getType() == Type.WHITE_ENERGY){
+					frame.getBoardPanel().getHexagon(i, j).setPiece(interfaceGrafica.BoardHexagon.Piece.WHITE_ENERGY);
+				}else if(piece.getType() == Type.BLACK_ROBOT){
+					frame.getBoardPanel().getHexagon(i, j).setPiece(interfaceGrafica.BoardHexagon.Piece.BLACK_ROBOT);
+				}else if(piece.getType() == Type.WHITE_ROBOT){
+					frame.getBoardPanel().getHexagon(i, j).setPiece(interfaceGrafica.BoardHexagon.Piece.WHITE_ROBOT);
+				}else if(piece.getType() == Type.RED_ROBOT){
+					frame.getBoardPanel().getHexagon(i, j).setPiece(interfaceGrafica.BoardHexagon.Piece.RED_ROBOT);
+				} else {
+					frame.getBoardPanel().getHexagon(i, j).setPiece(null);
+				}
+				frame.getBoardPanel().getHexagon(i, j).displayPiece();
+			}
+		}
+
+		int blackEnergy = board.getBlackEnergy();
+		int whiteEnergy = board.getWhiteEnergy();
+
+		frame.getBoardPanel().getBlackSupply().setText(""+blackEnergy);
+		frame.getBoardPanel().getWhiteSupply().setText(""+whiteEnergy);
+		
+		int p1BlackEnergy;
+		int p1WhiteEnergy;
+		int p2BlackEnergy;
+		int p2WhiteEnergy;
+		
+		if (board.getLocalPlayer().getColor() == true) {
+			p1BlackEnergy = board.getLocalPlayer().getBlackEnergy();
+			p1WhiteEnergy = board.getLocalPlayer().getWhiteEnergy();
+			p2BlackEnergy = board.getRemotePlayer().getBlackEnergy();
+			p2WhiteEnergy = board.getRemotePlayer().getWhiteEnergy();
+		} else {
+			p1BlackEnergy = board.getRemotePlayer().getBlackEnergy();
+			p1WhiteEnergy = board.getRemotePlayer().getWhiteEnergy();
+			p2BlackEnergy = board.getLocalPlayer().getBlackEnergy();
+			p2WhiteEnergy = board.getLocalPlayer().getWhiteEnergy();
+		}
+
+		frame.getBoardPanel().getP1Supply(0).setText(""+p1BlackEnergy);
+		frame.getBoardPanel().getP1Supply(1).setText(""+p1WhiteEnergy);
+		frame.getBoardPanel().getP2Supply(0).setText(""+p2BlackEnergy);
+		frame.getBoardPanel().getP2Supply(1).setText(""+p2WhiteEnergy);
+		
+		if (p1BlackEnergy == 0) {
+			frame.getBoardPanel().getP1Supply(0).setPiece(null);
+		}else {
+			frame.getBoardPanel().getP1Supply(0).setPiece(interfaceGrafica.BoardHexagon.Piece.BLACK_ENERGY);
+		}
+		
+		if (p1WhiteEnergy == 0) {
+			frame.getBoardPanel().getP1Supply(1).setPiece(null);
+		}else {
+			frame.getBoardPanel().getP1Supply(1).setPiece(interfaceGrafica.BoardHexagon.Piece.WHITE_ENERGY);
+		}
+
+		if (p2BlackEnergy == 0) {
+			frame.getBoardPanel().getP2Supply(0).setPiece(null);
+		}else {
+			frame.getBoardPanel().getP2Supply(0).setPiece(interfaceGrafica.BoardHexagon.Piece.BLACK_ENERGY);
+		}
+		
+		if (p2WhiteEnergy == 0) {
+			frame.getBoardPanel().getP2Supply(1).setPiece(null);
+		}else {
+			frame.getBoardPanel().getP2Supply(1).setPiece(interfaceGrafica.BoardHexagon.Piece.WHITE_ENERGY);
+		}
+		
+		
 	}
 	
 	/**
@@ -151,7 +231,7 @@ public class InterfaceRobotory {
 						@Override
 						public void mouseClicked(MouseEvent e) {
 							selectPosition(position.getPosition().x, position.getPosition().y);
-							JOptionPane.showMessageDialog(null, position.getPosition());
+							//JOptionPane.showMessageDialog(null, position.getPosition());
 							super.mouseClicked(e);
 						}
 					});

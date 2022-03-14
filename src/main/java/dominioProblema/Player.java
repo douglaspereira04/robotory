@@ -85,6 +85,22 @@ public class Player {
 	public boolean isEnergyEmpty() {
 		return (this.whiteEnergy + this.blackEnergy == 0);
 	}
+
+	public int getWhiteEnergy() {
+		return whiteEnergy;
+	}
+
+	public void setWhiteEnergy(int whiteEnergy) {
+		this.whiteEnergy = whiteEnergy;
+	}
+
+	public int getBlackEnergy() {
+		return blackEnergy;
+	}
+
+	public void setBlackEnergy(int blackEnergy) {
+		this.blackEnergy = blackEnergy;
+	}
 	
 	
 }

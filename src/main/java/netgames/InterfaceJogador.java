@@ -12,6 +12,10 @@ public class InterfaceJogador {
 	
 	
 	
+	public Board getBoard() {
+		return board;
+	}
+
 	public InterfaceJogador(InterfaceRobotory interfaceRobotory) {
 		super();
 		this.ngames = new AtorNetgames(this);
@@ -166,14 +170,6 @@ public class InterfaceJogador {
 	public void endMatch() {
 		board.endMatch();
 		interfaceRobotory.displayState();
-	}
-	
-	public Move getMoveInProgress() {
-		return null;
-	}
-	
-	public boolean isGetEnergyInProgress() {
-		return false;
 	}
 	
 	public void pressEndMove() {

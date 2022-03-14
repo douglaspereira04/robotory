@@ -468,4 +468,41 @@ public class Board {
 		}
 		return aux;
 	}
+
+	public Player getLocalPlayer() {
+		return localPlayer;
+	}
+
+	public void setLocalPlayer(Player localPlayer) {
+		this.localPlayer = localPlayer;
+	}
+
+	public Player getRemotePlayer() {
+		return remotePlayer;
+	}
+
+	public void setRemotePlayer(Player remotePlayer) {
+		this.remotePlayer = remotePlayer;
+	}
+
+	public int getWhiteEnergy() {
+		return whiteEnergy;
+	}
+
+	public void setWhiteEnergy(int whiteEnergy) {
+		this.whiteEnergy = whiteEnergy;
+	}
+
+	public int getBlackEnergy() {
+		return blackEnergy;
+	}
+
+	public void setBlackEnergy(int blackEnergy) {
+		this.blackEnergy = blackEnergy;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+	
 }
