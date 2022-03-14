@@ -86,7 +86,11 @@ public class AtorNetgames implements OuvidorProxy {
 	@Override
 	public void iniciarNovaPartida(Integer posicao) {
 		// TODO Auto-generated method stub
-		JOptionPane.showMessageDialog(null, "o servidor enviou solicitacao de inicio de partida e isso deve ser tratado segundo as regras do seu jogo");
+		int opponentIndex = 1;
+		if (posicao.equals(1)) opponentIndex = 2;
+		String opponent = proxy.obterNomeAdversario(opponentIndex);
+		
+		interfaceJogador.requestMatchStart(posicao, opponent);
 	}
 
 	@Override

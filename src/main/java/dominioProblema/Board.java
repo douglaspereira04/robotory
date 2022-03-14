@@ -203,7 +203,7 @@ public class Board {
 	
 	public void endMatch() {
 		this.setInitialState(0, "");
-		this.remotePlayer = new Player();
+		this.remotePlayer.reset();
 		this.localPlayer.reset();
 		this.updateState();
 	}
@@ -217,6 +217,16 @@ public class Board {
 		this.board[3][2] = new Piece(Type.WHITE_ROBOT);
 		this.whiteEnergy = 10;
 		this.blackEnergy = 10;
+		
+		localPlayer.reset();
+		
+		remotePlayer = new Player(opponent);
+		
+		if (order == 1) {
+			localPlayer.setFirst();
+		} else if(order == 2){
+			remotePlayer.setFirst();
+		}
 	}
 	
 	public void setMessage(String message) {

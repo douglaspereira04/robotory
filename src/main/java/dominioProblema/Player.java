@@ -9,6 +9,10 @@ public class Player {
 	protected int whiteEnergy;
 	protected int blackEnergy;
 	
+	public Player(String opponent) {
+		this.name = opponent;
+	}
+
 	public boolean isTurn() {
 		return false;
 	}

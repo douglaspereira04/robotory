@@ -137,7 +137,7 @@ public class InterfaceJogador {
 	}
 	
 	public void requestMatchStart(int order, String opponent) {
-		
+		board.setInitialState(order, opponent);
 	}
 	
 	public void selectFromPersonalSupply(boolean color, boolean owner) {
