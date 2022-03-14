@@ -205,7 +205,28 @@ public class Board {
 	}
 	
 	public void applyEnergyPlacement(PlaceEnergy move) {
+		int x = move.getX();
+		int y = move.getY();
+		boolean color = move.getColor();
 		
+		Type type = null;
+		if (color) {
+			type = Type.WHITE_ENERGY;
+		} else if(!color) {
+			type = Type.BLACK_ENERGY;
+		}
+		
+		Piece piece = new Piece(type);
+		
+		this.placePiece(x, y, piece);
+		
+		boolean turn = localPlayer.isTurn();
+		
+		if (turn) {
+			localPlayer.decrementEnergy(color);
+		} if (!turn) {
+			remotePlayer.decrementEnergy(color);
+		}
 	}
 	
 	public void decrementEnergy(boolean color, int amount) {
@@ -214,6 +235,7 @@ public class Board {
 		} else {
 			this.blackEnergy -= amount;
 		}
+		
 	}
 	
 	public void applyGetEnergy(GetEnergy move) {

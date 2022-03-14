@@ -55,11 +55,11 @@ public class Player {
 		}
 	}
 
-	public void decrementEnergy(boolean color, int amount) {
+	public void decrementEnergy(boolean color) {
 		if (color) {
-			this.whiteEnergy -= amount;
+			this.whiteEnergy -= 1;
 		} else {
-			this.blackEnergy -= amount;
+			this.blackEnergy -= 1;
 		}
 	}
 	
