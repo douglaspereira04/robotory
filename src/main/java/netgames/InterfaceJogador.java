@@ -138,8 +138,11 @@ public class InterfaceJogador {
 		
 	}
 	
-	public String selectFromPersonalSupply(boolean color, boolean owner) {
-		return null;
+	public void selectFromPersonalSupply(boolean color, boolean owner) {
+		String message = board.selectFromPersonalSupply(color, owner);
+		if(!message.equals("")) {
+			interfaceRobotory.notify(message);
+		}
 	}
 	
 	public void getEnergy(boolean color) {

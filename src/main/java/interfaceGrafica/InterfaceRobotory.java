@@ -162,6 +162,38 @@ public class InterfaceRobotory {
 				}
 			}
 		}
+
+		frame.getBoardPanel().getP1Supply(0).addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				actor.selectFromPersonalSupply(false, true);
+				super.mouseClicked(e);
+			}
+		});
+		
+		frame.getBoardPanel().getP1Supply(1).addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				actor.selectFromPersonalSupply(true, true);
+				super.mouseClicked(e);
+			}
+		});
+		
+		frame.getBoardPanel().getP2Supply(0).addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				actor.selectFromPersonalSupply(false, false);
+				super.mouseClicked(e);
+			}
+		});
+		
+		frame.getBoardPanel().getP2Supply(1).addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				actor.selectFromPersonalSupply(true, false);
+				super.mouseClicked(e);
+			}
+		});
 		
 		frame.getBoardPanel().getEndMoveButton().addActionListener(new ActionListener() {
 			@Override
