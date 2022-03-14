@@ -8,10 +8,15 @@ public class Piece {
 	}
 	
 	public boolean holdsRobot() {
-		return false;
+		boolean holdsRobot = 
+				type == Type.RED_ROBOT || 
+				type == Type.WHITE_ROBOT ||
+                type == Type.BLACK_ROBOT;
+		
+		return holdsRobot;
 	}
 	
 	public Type getType() {
-		return null;
+		return type;
 	}
 }

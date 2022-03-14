@@ -23,7 +23,34 @@ public class Board {
 	}
 	
 	public String selectRobot(int x, int y) {
-		return null;
+		String message = "";
+		
+		boolean turn = localPlayer.isTurn();
+		
+		if (turn) {
+			Piece piece = getPiece(x, y);
+			
+			if (piece != null) {
+				boolean holdsRobot = piece.holdsRobot();
+				
+				if (holdsRobot) {
+					boolean canMove = canMove(x, y);
+					
+					if (canMove) {
+						moveInProgress = new MoveRobot(x, y);
+						message = "";
+					}else if(!canMove) {
+						message = "No possible movement";
+					}
+				}else if(!holdsRobot) {
+					message = "Invalid selection";
+				}
+			}
+		} else if(!turn) {
+			message = "Not your turn";
+		}
+		
+		return message;
 	}
 	
 	public boolean isRobotMovementInProgress() {

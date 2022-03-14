@@ -7,7 +7,7 @@ public class MoveRobot extends Move {
 	public ArrayList<Integer> x;
 	public ArrayList<Integer> y;
 	
-	MoveRobot(int x, int y) {
+	public MoveRobot(int x, int y) {
 		super(MoveType.MOVE_ROBOT);
 		this.x = new ArrayList<Integer>();
 		this.y = new ArrayList<Integer>();
