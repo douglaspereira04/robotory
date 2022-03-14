@@ -452,19 +452,38 @@ public class Board {
 	}
 	
 	public ArrayList<Piece> getBoardLine(int index) {
-		int size = 0;
-		if (index == 0 || index == 5) {
-			size = 3;
-		} else if (index == 1 || index == 4) {
-			size = 4;
-		} else if (index == 2 || index == 3) {
-			size = 5;
-		} else {
-			return null;
+		int[] auxLinha = null, auxColuna = null;
+		switch(index) {
+			case 0:
+				auxLinha = new int[] {0,1,2};
+				auxColuna = new int[] {0,0,0};
+				break;
+			case 1:
+				auxLinha = new int[] {0,1,2,3};
+				auxColuna = new int[] {1,1,1,0};
+				break;
+			case 2:
+				auxLinha = new int[] {0,1,2,3,4};
+				auxColuna = new int[] {2,2,2,1,0};
+				break;
+			case 3:
+				auxLinha = new int[] {0,1,2,3,4};
+				auxColuna = new int[] {3,3,3,2,1};
+				break;
+			case 4:
+				auxLinha = new int[] {1,2,3,4};
+				auxColuna = new int[] {4,4,3,2};
+				break;
+			case 5:
+				auxLinha = new int[] {2,3,4};
+				auxColuna = new int[] {5,4,3};
+				break;
 		}
-		ArrayList<Piece> aux = new ArrayList<Piece>();
-		for (int i = 0; i < size; i++) {
-			aux.add(this.board[index][i]);
+		ArrayList<Piece> aux = new ArrayList<Piece>(auxLinha.length);
+		for (int i = 0; i < auxLinha.length; i++) {
+			int linha = auxLinha[i];
+			int coluna  = auxColuna[i];
+			aux.add(this.board[linha][coluna]);
 		}
 		return aux;
 	}
