@@ -43,8 +43,8 @@ public class InterfaceRobotory {
 
 
 
-	public boolean connect() {
-		return false;
+	public void connect() {
+		actor.connect();
 	}
 	
 	public String getPlayerName() {
@@ -60,7 +60,7 @@ public class InterfaceRobotory {
 	}
 	
 	public void disconnect() {
-		
+		actor.disconnect();
 	}
 	
 	public void displayState() {
@@ -68,27 +68,23 @@ public class InterfaceRobotory {
 	}
 	
 	public void selectPosition(int x, int y) {
-		
+		actor.selectPosition(x, y);
 	}
 	
 	public void startMatch() {
-		
+		actor.startMatch();
 	}
 	
 	public void selectFromPersonalSupply(boolean color, boolean owner) {
-		
+		actor.selectFromPersonalSupply(color, owner);
 	}
 	
 	public void getEnergy(boolean color) {
-		
-	}
-	
-	public void selectEnergyFromSupply(boolean color) {
-		
+		actor.getEnergy(color);
 	}
 	
 	public void pressEndMove() {
-		
+		actor.pressEndMove();
 	}
 	
 	/**
@@ -104,7 +100,7 @@ public class InterfaceRobotory {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				actor.connect();
+				connect();
 			}
 		});
 		
@@ -115,7 +111,7 @@ public class InterfaceRobotory {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				actor.disconnect();
+				disconnect();
 			}
 		});
 		
@@ -125,14 +121,14 @@ public class InterfaceRobotory {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				actor.startMatch();
+				startMatch();
 			}
 		});
 		
 		frame.getBoardPanel().getWhiteSupply().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				actor.getEnergy(true);
+				getEnergy(true);
 				super.mouseClicked(e);
 			}
 		});
@@ -141,7 +137,7 @@ public class InterfaceRobotory {
 		frame.getBoardPanel().getBlackSupply().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				actor.getEnergy(false);
+				getEnergy(false);
 				super.mouseClicked(e);
 			}
 		});
@@ -154,7 +150,7 @@ public class InterfaceRobotory {
 					position.addMouseListener(new MouseAdapter() {
 						@Override
 						public void mouseClicked(MouseEvent e) {
-							//actor.selectPosition(position.getPosition().x, position.getPosition().y);
+							selectPosition(position.getPosition().x, position.getPosition().y);
 							JOptionPane.showMessageDialog(null, position.getPosition());
 							super.mouseClicked(e);
 						}
@@ -166,7 +162,7 @@ public class InterfaceRobotory {
 		frame.getBoardPanel().getP1Supply(0).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				actor.selectFromPersonalSupply(false, true);
+				selectFromPersonalSupply(false, true);
 				super.mouseClicked(e);
 			}
 		});
@@ -174,7 +170,7 @@ public class InterfaceRobotory {
 		frame.getBoardPanel().getP1Supply(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				actor.selectFromPersonalSupply(true, true);
+				selectFromPersonalSupply(true, true);
 				super.mouseClicked(e);
 			}
 		});
@@ -182,7 +178,7 @@ public class InterfaceRobotory {
 		frame.getBoardPanel().getP2Supply(0).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				actor.selectFromPersonalSupply(false, false);
+				selectFromPersonalSupply(false, false);
 				super.mouseClicked(e);
 			}
 		});
@@ -190,7 +186,7 @@ public class InterfaceRobotory {
 		frame.getBoardPanel().getP2Supply(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				actor.selectFromPersonalSupply(true, false);
+				selectFromPersonalSupply(true, false);
 				super.mouseClicked(e);
 			}
 		});
@@ -198,7 +194,7 @@ public class InterfaceRobotory {
 		frame.getBoardPanel().getEndMoveButton().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				actor.pressEndMove();
+				pressEndMove();
 			}
 		});
 		

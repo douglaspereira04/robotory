@@ -16,6 +16,7 @@ public class Board {
 	protected Move moveInProgress = null;
 	protected int whiteEnergy;
 	protected int blackEnergy;
+	protected String message;
 	
 	public void receiveMove(Move move) {
 		MoveType type = move.getType();
@@ -230,7 +231,7 @@ public class Board {
 	}
 	
 	public void setMessage(String message) {
-		
+		this.message = message;
 	}
 	
 	public void applyRobotMovement(MoveRobot move) {
