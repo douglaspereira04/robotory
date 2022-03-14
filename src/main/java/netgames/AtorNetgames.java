@@ -16,13 +16,15 @@ public class AtorNetgames implements OuvidorProxy {
 	private static final long serialVersionUID = 1L;
 	protected Proxy proxy;
 	protected boolean connected;
+	protected InterfaceJogador interfaceJogador;
 	
 	
-	public AtorNetgames() {
+	public AtorNetgames(InterfaceJogador interfaceJogador) {
 		super();
 		this.proxy = Proxy.getInstance();
 		proxy.addOuvinte(this);	
 		connected = false;
+		this.interfaceJogador = interfaceJogador;
 	}
 	
 	public void defineConnected(boolean value) {
@@ -100,8 +102,7 @@ public class AtorNetgames implements OuvidorProxy {
 
 	@Override
 	public void receberJogada(Jogada jogada) {
-		// TODO Auto-generated method stub
-		
+		interfaceJogador.receiveMove((Move)jogada);
 	}
 
 	@Override

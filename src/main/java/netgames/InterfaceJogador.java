@@ -14,13 +14,15 @@ public class InterfaceJogador {
 	
 	public InterfaceJogador(InterfaceRobotory interfaceRobotory) {
 		super();
-		this.ngames = new AtorNetgames();
+		this.ngames = new AtorNetgames(this);
 		this.board = new Board();
 		this.interfaceRobotory = interfaceRobotory;
 	}
 
 	public void receiveMove(Move move) {
-		
+		board.receiveMove(move);
+		board.updateState();
+		interfaceRobotory.displayState();
 	}
 	
 	public void connect() {
