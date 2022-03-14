@@ -289,7 +289,7 @@ public class Board {
 					if (piece != null) {
 						boolean holdsRobot = piece.holdsRobot();
 						if (holdsRobot) {
-							if (i < 2) {
+							if (i <= 2) {
 								blackSide++;
 							} else {
 								whiteSide++;
@@ -305,7 +305,13 @@ public class Board {
 				} else {
 					this.remotePlayer.setWinner(true);
 				}
-			}
+			} else {
+                if (whiteSide > blackSide) {
+                    this.remotePlayer.setWinner(true);
+                } else {
+                    this.localPlayer.setWinner(true);
+                }
+            }
 			this.matchInProgress = false;
 			
 			boolean localWinner = localPlayer.isWinner();
@@ -325,7 +331,7 @@ public class Board {
 			if (!this.isMoveInProgress()) {
 				boolean turn = this.localPlayer.isTurn();
 				if (turn) {
-					boolean empty = this.localPlayer.isEnergyEmpty();
+					boolean empty = this.localPlayer.isEnergyEmpty(color);
 					if (!empty) {
 						PlaceEnergy move = new PlaceEnergy(color);
 						this.moveInProgress = move;
